@@ -1,0 +1,27 @@
+<log>
+<starttest local-name="wms-fees" prefix="wms" namespace-uri="http://www.opengis.net/wms" type="Mandatory" defaultResult="1" path="s0002/d68e11855_1" file="/root/te_base/work/_root_te_base_scripts_wms11_1.1.1_ctl_main.xml/wms$wms-fees.test">
+<assertion>This WMS is valid against the test &apos;Fees and Access Constraints&apos;</assertion>
+<params xmlns:wms="http://www.opengis.net/wms" xmlns:tec="java:com.occamlab.te.TECore"
+        xmlns:tems="java:com.occamlab.te.web.MonitorServlet"
+        xmlns:saxon="http://saxon.sf.net/"
+        xmlns:example="http://www.somehost.com/example"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns:functions="http://www.occamlab.com/wms-1.1.1/src/ctl/functions.xml"
+        xmlns:parsers="http://www.occamlab.com/te/parsers"
+        xmlns:ctl="http://www.occamlab.com/ctl"
+        xmlns:gen="java:com.occamlab.te.Generator"
+        xmlns:te="http://www.occamlab.com/te"
+        xmlns:xi="http://www.w3.org/2001/XInclude">
+   <param local-name="VAR_WMS_VERSION" namespace-uri="" prefix="" type="document-node()">
+      <value>1.1.1</value>
+   </param>
+   <param local-name="VAR_WMS_GET_CAPABILITIES_HTTP_GET_URL" namespace-uri="" prefix=""
+          type="document-node()">
+      <value>http://geoserver:8080/geoserver/wms?SERVICE=WMS&amp;</value>
+   </param>
+</params>
+</starttest>
+<testcall path="s0002/d68e11855_1/d68e13452_1"/>
+<endtest result="1"/>
+<conformanceClass name="wms-fees" isBasic="false" result="1" />
+</log>

@@ -1,0 +1,47 @@
+<log>
+<starttest local-name="wmsops-getmap-params-bbox-10" prefix="wms" namespace-uri="http://www.opengis.net/wms" type="Mandatory" defaultResult="1" path="s0002/d68e11807_1/d68e13359_1" file="/root/te_base/work/_root_te_base_scripts_wms11_1.1.1_ctl_main.xml/wms$wmsops-getmap-params-bbox-10.test">
+<assertion>When a request contains a Bounding Box with y values that are beyond 90 degrees, then the server returns empty content for the area beyond 90 degrees.</assertion>
+<params xmlns:wms="http://www.opengis.net/wms" xmlns:tec="java:com.occamlab.te.TECore"
+        xmlns:tems="java:com.occamlab.te.web.MonitorServlet"
+        xmlns:saxon="http://saxon.sf.net/"
+        xmlns:example="http://www.somehost.com/example"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns:functions="http://www.occamlab.com/wms-1.1.1/src/ctl/functions.xml"
+        xmlns:parsers="http://www.occamlab.com/te/parsers"
+        xmlns:ctl="http://www.occamlab.com/ctl"
+        xmlns:gen="java:com.occamlab.te.Generator"
+        xmlns:te="http://www.occamlab.com/te"
+        xmlns:xi="http://www.w3.org/2001/XInclude">
+   <param local-name="VAR_WMS_VERSION" namespace-uri="" prefix="" type="node()">
+      <value>1.1.1</value>
+   </param>
+   <param local-name="VAR_PONDS" namespace-uri="" prefix="" type="node()">
+      <value>cite:Ponds</value>
+   </param>
+   <param local-name="VAR_LOSSLESS_FORMAT" namespace-uri="" prefix="" type="node()">
+      <value>image/png</value>
+   </param>
+   <param local-name="VAR_WMS_GET_MAP_HTTP_GET_URL" namespace-uri="" prefix=""
+          type="node()">
+      <value>http://geoserver:8080/geoserver/wms?SERVICE=WMS&amp;</value>
+   </param>
+</params>
+</starttest>
+<request id="d68e5070_1">
+<request xmlns="http://www.occamlab.com/ctl" xmlns:wms="http://www.opengis.net/wms" xmlns:ogc="http://www.opengis.net/ogc" xmlns:tec="java:com.occamlab.te.TECore" xmlns:etswms="http://www.occamlab.com/etswms/1.1" xmlns:tems="java:com.occamlab.te.web.MonitorServlet" xmlns:saxon="http://saxon.sf.net/" xmlns:example="http://www.somehost.com/example" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:functions="http://www.occamlab.com/wms-1.1.1/src/ctl/functions.xml" xmlns:parsers="http://www.occamlab.com/te/parsers" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ctl="http://www.occamlab.com/ctl" xmlns:ccf="http://www.opengis.net/cite/complex" xmlns:gen="java:com.occamlab.te.Generator" xmlns:cdf="http://www.opengis.net/cite/data" xmlns:te="http://www.occamlab.com/te" xmlns:cgf="http://www.opengis.net/cite/geometry" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:gml="http://www.occamlab.com/gml"><url>http://geoserver:8080/geoserver/wms?SERVICE=WMS&amp;</url><method>get</method><param name="StYlEs"/><param name="HeIgHt">100</param><param name="WiDtH">100</param><param name="SrS">EPSG:4326</param><param name="LaYeRs">cite:Ponds</param><param name="BbOx">-5,90,5,100</param><param name="VeRsIoN">1.1.1</param><param name="FoRmAt">image%2Fpng</param><param name="ReQuEsT">GetMap</param><example:ImageStats>
+
+        &lt;image_stats&gt;
+        &lt;model value="RGB"&gt;
+        &lt;count bands="RGB" sample="all"&gt;&lt;/count&gt;
+        &lt;/model&gt;
+        &lt;/image_stats&gt;
+
+      </example:ImageStats></request>
+<response><parser local-name="ImageStats" namespace-uri="http://www.somehost.com/example" prefix="example"/><content><image_stats>
+        <model value="RGB">
+        <count bands="RGB" sample="0xffffff">100</count>
+        </model>
+        <!--Response received in [126] milliseconds--></image_stats></content></response>
+</request>
+<endtest result="1"/>
+</log>

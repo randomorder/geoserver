@@ -1,0 +1,39 @@
+<log>
+<starttest local-name="basic_elements-param_rules-order_and_case-5" prefix="wms" namespace-uri="http://www.opengis.net/wms" type="Mandatory" defaultResult="1" path="s0002/d68e11628_1/d68e12151_1" file="/root/te_base/work/_root_te_base_scripts_wms11_1.1.1_ctl_main.xml/wms$basic_elements-param_rules-order_and_case-5.test">
+<assertion>When a GetFeatureInfo request contains a parameter which is not defined by the spec, the result is valid.</assertion>
+<params xmlns:wms="http://www.opengis.net/wms" xmlns:tec="java:com.occamlab.te.TECore"
+        xmlns:tems="java:com.occamlab.te.web.MonitorServlet"
+        xmlns:saxon="http://saxon.sf.net/"
+        xmlns:example="http://www.somehost.com/example"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns:functions="http://www.occamlab.com/wms-1.1.1/src/ctl/functions.xml"
+        xmlns:parsers="http://www.occamlab.com/te/parsers"
+        xmlns:ctl="http://www.occamlab.com/ctl"
+        xmlns:gen="java:com.occamlab.te.Generator"
+        xmlns:te="http://www.occamlab.com/te"
+        xmlns:xi="http://www.w3.org/2001/XInclude">
+   <param local-name="VAR_WMS_VERSION" namespace-uri="" prefix="" type="node()">
+      <value>1.1.1</value>
+   </param>
+   <param local-name="VAR_LAKES" namespace-uri="" prefix="" type="node()">
+      <value>cite:Lakes</value>
+   </param>
+   <param local-name="VAR_IMAGE_FORMAT" namespace-uri="" prefix="" type="node()">
+      <value>image/png</value>
+   </param>
+   <param local-name="VAR_GET_FEATURE_INFO_FORMAT" namespace-uri="" prefix=""
+          type="node()">
+      <value>text/plain</value>
+   </param>
+   <param local-name="VAR_WMS_GET_FEATURE_INFO_HTTP_GET_URL" namespace-uri="" prefix=""
+          type="node()">
+      <value>http://geoserver:8080/geoserver/wms?SERVICE=WMS&amp;</value>
+   </param>
+</params>
+</starttest>
+<request id="d68e715_1">
+<request xmlns="http://www.occamlab.com/ctl" xmlns:wms="http://www.opengis.net/wms" xmlns:ogc="http://www.opengis.net/ogc" xmlns:tec="java:com.occamlab.te.TECore" xmlns:etswms="http://www.occamlab.com/etswms/1.1" xmlns:tems="java:com.occamlab.te.web.MonitorServlet" xmlns:saxon="http://saxon.sf.net/" xmlns:example="http://www.somehost.com/example" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:functions="http://www.occamlab.com/wms-1.1.1/src/ctl/functions.xml" xmlns:parsers="http://www.occamlab.com/te/parsers" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ctl="http://www.occamlab.com/ctl" xmlns:ccf="http://www.opengis.net/cite/complex" xmlns:gen="java:com.occamlab.te.Generator" xmlns:cdf="http://www.opengis.net/cite/data" xmlns:te="http://www.occamlab.com/te" xmlns:cgf="http://www.opengis.net/cite/geometry" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:gml="http://www.occamlab.com/gml"><url>http://geoserver:8080/geoserver/wms?SERVICE=WMS&amp;</url><method>get</method><param name="SrS">EPSG:4326</param><param name="X">60</param><param name="FoRmAt">image%2Fpng</param><param name="InFo_fOrMaT">text%2Fplain</param><param name="Y">60</param><param name="WiDtH">200</param><param name="QuErY_LaYeRs">cite:Lakes</param><param name="LaYeRs">cite:Lakes</param><param name="BoGuS">ignored</param><param name="BbOx">0,-0.0020,0.0040,0</param><param name="VeRsIoN">1.1.1</param><param name="HeIgHt">100</param><param name="StYlEs"/><param name="ReQuEsT">GetFeatureInfo</param><parsers:HeadersParser/></request>
+<response><parser local-name="HeadersParser" namespace-uri="http://www.occamlab.com/te/parsers" prefix="parsers"/><content><headers><header><value>HTTP/1.1 200</value></header><header><name>X-Frame-Options</name><value>SAMEORIGIN</value></header><header><name>Content-Disposition</name><value>inline; filename=geoserver-GetFeatureInfo.text</value></header><header><name>Content-Type</name><value>text/plain;charset=UTF-8</value></header><header><name>Transfer-Encoding</name><value>chunked</value></header><header><name>Date</name><value>Thu, 27 Feb 2020 16:12:58 GMT</value></header><header><name>Keep-Alive</name><value>timeout=20</value></header><header><name>Connection</name><value>keep-alive</value></header><!--Response received in [142] milliseconds--></headers></content></response>
+</request>
+<endtest result="1"/>
+</log>

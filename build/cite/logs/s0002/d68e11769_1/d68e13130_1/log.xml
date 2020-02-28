@@ -1,0 +1,33 @@
+<log>
+<starttest local-name="profiles-queryable-3" prefix="wms" namespace-uri="http://www.opengis.net/wms" type="Mandatory" defaultResult="1" path="s0002/d68e11769_1/d68e13130_1" file="/root/te_base/work/_root_te_base_scripts_wms11_1.1.1_ctl_main.xml/wms$profiles-queryable-3.test">
+<assertion>The server supports GetFeatureInfo requests and the CITE standard dataset layers containing polygons are queryable.</assertion>
+<params xmlns:wms="http://www.opengis.net/wms" xmlns:tec="java:com.occamlab.te.TECore"
+        xmlns:tems="java:com.occamlab.te.web.MonitorServlet"
+        xmlns:saxon="http://saxon.sf.net/"
+        xmlns:example="http://www.somehost.com/example"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns:functions="http://www.occamlab.com/wms-1.1.1/src/ctl/functions.xml"
+        xmlns:parsers="http://www.occamlab.com/te/parsers"
+        xmlns:ctl="http://www.occamlab.com/ctl"
+        xmlns:gen="java:com.occamlab.te.Generator"
+        xmlns:te="http://www.occamlab.com/te"
+        xmlns:xi="http://www.w3.org/2001/XInclude">
+   <param local-name="VAR_QUERYABLE_LAYERS_EXIST" namespace-uri="" prefix=""
+          type="node()">
+      <value>true</value>
+   </param>
+   <param local-name="VAR_WMS_GET_FEATURE_INFO_HTTP_GET_URL" namespace-uri="" prefix=""
+          type="node()">
+      <value>http://geoserver:8080/geoserver/wms?SERVICE=WMS&amp;</value>
+   </param>
+   <param local-name="hosturl" namespace-uri="" prefix="" type="node()">
+      <value>cite.opengeospatial.org</value>
+   </param>
+</params>
+</starttest>
+<request id="d68e1329_1">
+<request xmlns="http://www.occamlab.com/ctl" xmlns:wms="http://www.opengis.net/wms" xmlns:ogc="http://www.opengis.net/ogc" xmlns:tec="java:com.occamlab.te.TECore" xmlns:etswms="http://www.occamlab.com/etswms/1.1" xmlns:tems="java:com.occamlab.te.web.MonitorServlet" xmlns:saxon="http://saxon.sf.net/" xmlns:example="http://www.somehost.com/example" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:functions="http://www.occamlab.com/wms-1.1.1/src/ctl/functions.xml" xmlns:parsers="http://www.occamlab.com/te/parsers" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ctl="http://www.occamlab.com/ctl" xmlns:ccf="http://www.opengis.net/cite/complex" xmlns:gen="java:com.occamlab.te.Generator" xmlns:cdf="http://www.opengis.net/cite/data" xmlns:te="http://www.occamlab.com/te" xmlns:cgf="http://www.opengis.net/cite/geometry" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:gml="http://www.occamlab.com/gml"><url>http://cite.opengeospatial.org/OGCTestData/wms/1.1.1/null.xml</url><method>get</method></request>
+<response><parser/><content><null><!--Response received in [139] milliseconds--></null></content></response>
+</request>
+<endtest result="1"/>
+</log>

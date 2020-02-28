@@ -1,0 +1,619 @@
+<log>
+<starttest local-name="wms-no-profile" prefix="wms" namespace-uri="http://www.opengis.net/wms" type="Mandatory" defaultResult="1" path="s0001/d68e11628_1" file="/root/te_base/work/_root_te_base_scripts_wms11_1.1.1_ctl_main.xml/wms$wms-no-profile.test">
+<assertion>This WMS is valid against &apos;no&apos; profile</assertion>
+<params xmlns:wms="http://www.opengis.net/wms" xmlns:tec="java:com.occamlab.te.TECore"
+        xmlns:tems="java:com.occamlab.te.web.MonitorServlet"
+        xmlns:saxon="http://saxon.sf.net/"
+        xmlns:example="http://www.somehost.com/example"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns:functions="http://www.occamlab.com/wms-1.1.1/src/ctl/functions.xml"
+        xmlns:parsers="http://www.occamlab.com/te/parsers"
+        xmlns:ctl="http://www.occamlab.com/ctl"
+        xmlns:gen="java:com.occamlab.te.Generator"
+        xmlns:te="http://www.occamlab.com/te"
+        xmlns:xi="http://www.w3.org/2001/XInclude">
+   <param local-name="auto_updatesequence" namespace-uri="" prefix="" type="xs:boolean">
+      <value>true</value>
+   </param>
+   <param local-name="getfeatureinfo" namespace-uri="" prefix="" type="xs:boolean">
+      <value>true</value>
+   </param>
+   <param local-name="gif" namespace-uri="" prefix="" type="xs:boolean">
+      <value>true</value>
+   </param>
+   <param local-name="inherentsrs" namespace-uri="" prefix="" type="xs:boolean">
+      <value>true</value>
+   </param>
+   <param local-name="inherentstyle" namespace-uri="" prefix="" type="xs:boolean">
+      <value>true</value>
+   </param>
+   <param local-name="inheritedsrs" namespace-uri="" prefix="" type="xs:boolean">
+      <value>false</value>
+   </param>
+   <param local-name="inheritedstyle" namespace-uri="" prefix="" type="xs:boolean">
+      <value>false</value>
+   </param>
+   <param local-name="is-interactive-enabled" namespace-uri="" prefix="" type="node()">
+      <value/>
+   </param>
+   <param local-name="jpeg" namespace-uri="" prefix="" type="xs:boolean">
+      <value>true</value>
+   </param>
+   <param local-name="lossless" namespace-uri="" prefix="" type="xs:boolean">
+      <value>true</value>
+   </param>
+   <param local-name="manual_updatesequence" namespace-uri="" prefix="" type="xs:boolean">
+      <value>false</value>
+   </param>
+   <param local-name="namedstyle" namespace-uri="" prefix="" type="xs:boolean">
+      <value>true</value>
+   </param>
+   <param local-name="png" namespace-uri="" prefix="" type="xs:boolean">
+      <value>true</value>
+   </param>
+   <param local-name="queryable" namespace-uri="" prefix="" type="xs:boolean">
+      <value>false</value>
+   </param>
+   <param local-name="readable" namespace-uri="" prefix="" type="xs:boolean">
+      <value>true</value>
+   </param>
+   <param local-name="se_blank" namespace-uri="" prefix="" type="xs:boolean">
+      <value>true</value>
+   </param>
+   <param local-name="se_inimage" namespace-uri="" prefix="" type="xs:boolean">
+      <value>true</value>
+   </param>
+   <param local-name="stddata" namespace-uri="" prefix="" type="xs:boolean">
+      <value>false</value>
+   </param>
+   <param local-name="transparency" namespace-uri="" prefix="" type="xs:boolean">
+      <value>true</value>
+   </param>
+   <param local-name="unqueryablelayer" namespace-uri="" prefix="" type="xs:boolean">
+      <value>false</value>
+   </param>
+   <param local-name="updatesequence" namespace-uri="" prefix="" type="xs:boolean">
+      <value>true</value>
+   </param>
+   <param local-name="hosturl" namespace-uri="" prefix="" type="document-node()">
+      <value>cite.opengeospatial.org</value>
+   </param>
+   <param local-name="VAR_AUTO_HIGH_UPDATESEQUENCE" namespace-uri="" prefix=""
+          type="document-node()">
+      <value>2</value>
+   </param>
+   <param local-name="VAR_AUTO_LOW_UPDATESEQUENCE" namespace-uri="" prefix=""
+          type="document-node()">
+      <value>0</value>
+   </param>
+   <param local-name="VAR_BASIC_POLYGONS" namespace-uri="" prefix=""
+          type="document-node()">
+      <value/>
+   </param>
+   <param local-name="VAR_BRIDGES" namespace-uri="" prefix="" type="document-node()">
+      <value>cite:Bridges</value>
+   </param>
+   <param local-name="VAR_BUILDINGS" namespace-uri="" prefix="" type="document-node()">
+      <value>cite:Buildings</value>
+   </param>
+   <param local-name="VAR_CURRENT_UPDATESEQUENCE" namespace-uri="" prefix=""
+          type="document-node()">
+      <value>1</value>
+   </param>
+   <param local-name="VAR_DIVIDED_ROUTES" namespace-uri="" prefix=""
+          type="document-node()">
+      <value>cite:DividedRoutes</value>
+   </param>
+   <param local-name="VAR_FORESTS" namespace-uri="" prefix="" type="document-node()">
+      <value>cite:Forests</value>
+   </param>
+   <param local-name="VAR_GET_FEATURE_INFO_FORMAT" namespace-uri="" prefix=""
+          type="document-node()">
+      <value>text/plain</value>
+   </param>
+   <param local-name="VAR_HIGH_UPDATESEQUENCE" namespace-uri="" prefix=""
+          type="document-node()">
+      <value>100</value>
+   </param>
+   <param local-name="VAR_IMAGE_FORMAT" namespace-uri="" prefix="" type="document-node()">
+      <value>image/png</value>
+   </param>
+   <param local-name="VAR_INHERENT_STYLE" namespace-uri="" prefix=""
+          type="document-node()">
+      <value>cite_bridges</value>
+   </param>
+   <param local-name="VAR_INHERITED_STYLE" namespace-uri="" prefix=""
+          type="document-node()">
+      <value/>
+   </param>
+   <param local-name="VAR_LAKES" namespace-uri="" prefix="" type="document-node()">
+      <value>cite:Lakes</value>
+   </param>
+   <param local-name="VAR_LAYER_WITH_INHERENT_SRS" namespace-uri="" prefix=""
+          type="document-node()">
+      <value>cite:Bridges</value>
+   </param>
+   <param local-name="VAR_LAYER_WITH_INHERENT_STYLE" namespace-uri="" prefix=""
+          type="document-node()">
+      <value>cite:Bridges</value>
+   </param>
+   <param local-name="VAR_LAYER_WITH_INHERITED_SRS" namespace-uri="" prefix=""
+          type="document-node()">
+      <value/>
+   </param>
+   <param local-name="VAR_LAYER_WITH_INHERITED_STYLE" namespace-uri="" prefix=""
+          type="document-node()">
+      <value/>
+   </param>
+   <param local-name="VAR_LAYER_WITH_STYLE" namespace-uri="" prefix=""
+          type="document-node()">
+      <value>cite:Bridges</value>
+   </param>
+   <param local-name="VAR_LOSSLESS_FORMAT" namespace-uri="" prefix=""
+          type="document-node()">
+      <value>image/png</value>
+   </param>
+   <param local-name="VAR_LOW_UPDATESEQUENCE" namespace-uri="" prefix=""
+          type="document-node()">
+      <value>0</value>
+   </param>
+   <param local-name="VAR_MAP_NEATLINE" namespace-uri="" prefix="" type="document-node()">
+      <value>cite:MapNeatline</value>
+   </param>
+   <param local-name="VAR_NAMED_PLACES" namespace-uri="" prefix="" type="document-node()">
+      <value>cite:NamedPlaces</value>
+   </param>
+   <param local-name="VAR_PONDS" namespace-uri="" prefix="" type="document-node()">
+      <value>cite:Ponds</value>
+   </param>
+   <param local-name="VAR_READABLE_IMAGE_FORMAT" namespace-uri="" prefix=""
+          type="document-node()">
+      <value>image/png</value>
+   </param>
+   <param local-name="VAR_ROAD_SEGMENTS" namespace-uri="" prefix=""
+          type="document-node()">
+      <value>cite:RoadSegments</value>
+   </param>
+   <param local-name="VAR_STREAMS" namespace-uri="" prefix="" type="document-node()">
+      <value>cite:Streams</value>
+   </param>
+   <param local-name="VAR_STYLE" namespace-uri="" prefix="" type="document-node()">
+      <value>cite_bridges</value>
+   </param>
+   <param local-name="VAR_TRANSPARENT_FORMAT" namespace-uri="" prefix=""
+          type="document-node()">
+      <value>image/png</value>
+   </param>
+   <param local-name="VAR_UNQUERYABLE_LAYER" namespace-uri="" prefix=""
+          type="document-node()">
+      <value/>
+   </param>
+   <param local-name="VAR_WMS_CAPABILITIES" namespace-uri="" prefix=""
+          type="document-node(element(WMT_MS_Capabilities, xs:anyType))">
+      <value>
+         <WMT_MS_Capabilities updateSequence="1" version="1.1.1">
+            <Service>
+               <Name>OGC:WMS</Name>
+               <Title>My GeoServer WMS</Title>
+               <Abstract>
+This is a description of your Web Map Server.
+     </Abstract>
+               <KeywordList>
+                  <Keyword>WFS</Keyword>
+                  <Keyword>WMS</Keyword>
+                  <Keyword>GEOSERVER</Keyword>
+               </KeywordList>
+               <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://geoserver.org"
+                               xlink:type="simple"/>
+               <ContactInformation>
+                  <ContactPersonPrimary>
+                     <ContactPerson/>
+                     <ContactOrganization/>
+                  </ContactPersonPrimary>
+                  <ContactPosition/>
+                  <ContactAddress>
+                     <AddressType/>
+                     <Address/>
+                     <City/>
+                     <StateOrProvince/>
+                     <PostCode/>
+                     <Country/>
+                  </ContactAddress>
+                  <ContactVoiceTelephone/>
+                  <ContactFacsimileTelephone/>
+                  <ContactElectronicMailAddress/>
+               </ContactInformation>
+               <Fees>NONE</Fees>
+               <AccessConstraints>NONE</AccessConstraints>
+            </Service>
+            <Capability>
+               <Request>
+                  <GetCapabilities>
+                     <Format>application/vnd.ogc.wms_xml</Format>
+                     <Format>text/xml</Format>
+                     <DCPType>
+                        <HTTP>
+                           <Get>
+                              <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink"
+                                              xlink:href="http://geoserver:8080/geoserver/wms?SERVICE=WMS&amp;"
+                                              xlink:type="simple"/>
+                           </Get>
+                           <Post>
+                              <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink"
+                                              xlink:href="http://geoserver:8080/geoserver/wms?SERVICE=WMS&amp;"
+                                              xlink:type="simple"/>
+                           </Post>
+                        </HTTP>
+                     </DCPType>
+                  </GetCapabilities>
+                  <GetMap>
+                     <Format>image/png</Format>
+                     <Format>application/atom xml</Format>
+                     <Format>application/atom+xml</Format>
+                     <Format>application/json;type=utfgrid</Format>
+                     <Format>application/openlayers</Format>
+                     <Format>application/openlayers2</Format>
+                     <Format>application/openlayers3</Format>
+                     <Format>application/pdf</Format>
+                     <Format>application/rss xml</Format>
+                     <Format>application/rss+xml</Format>
+                     <Format>application/vnd.google-earth.kml</Format>
+                     <Format>application/vnd.google-earth.kml xml</Format>
+                     <Format>application/vnd.google-earth.kml+xml</Format>
+                     <Format>application/vnd.google-earth.kml+xml;mode=networklink</Format>
+                     <Format>application/vnd.google-earth.kmz</Format>
+                     <Format>application/vnd.google-earth.kmz xml</Format>
+                     <Format>application/vnd.google-earth.kmz+xml</Format>
+                     <Format>application/vnd.google-earth.kmz;mode=networklink</Format>
+                     <Format>atom</Format>
+                     <Format>image/geotiff</Format>
+                     <Format>image/geotiff8</Format>
+                     <Format>image/gif</Format>
+                     <Format>image/gif;subtype=animated</Format>
+                     <Format>image/jpeg</Format>
+                     <Format>image/png8</Format>
+                     <Format>image/png; mode=8bit</Format>
+                     <Format>image/svg</Format>
+                     <Format>image/svg xml</Format>
+                     <Format>image/svg+xml</Format>
+                     <Format>image/tiff</Format>
+                     <Format>image/tiff8</Format>
+                     <Format>image/vnd.jpeg-png</Format>
+                     <Format>image/vnd.jpeg-png8</Format>
+                     <Format>kml</Format>
+                     <Format>kmz</Format>
+                     <Format>openlayers</Format>
+                     <Format>rss</Format>
+                     <Format>text/html; subtype=openlayers</Format>
+                     <Format>text/html; subtype=openlayers2</Format>
+                     <Format>text/html; subtype=openlayers3</Format>
+                     <Format>utfgrid</Format>
+                     <DCPType>
+                        <HTTP>
+                           <Get>
+                              <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink"
+                                              xlink:href="http://geoserver:8080/geoserver/wms?SERVICE=WMS&amp;"
+                                              xlink:type="simple"/>
+                           </Get>
+                        </HTTP>
+                     </DCPType>
+                  </GetMap>
+                  <GetFeatureInfo>
+                     <Format>text/plain</Format>
+                     <Format>application/vnd.ogc.gml</Format>
+                     <Format>text/xml</Format>
+                     <Format>application/vnd.ogc.gml/3.1.1</Format>
+                     <Format>text/xml; subtype=gml/3.1.1</Format>
+                     <Format>text/html</Format>
+                     <Format>application/json</Format>
+                     <DCPType>
+                        <HTTP>
+                           <Get>
+                              <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink"
+                                              xlink:href="http://geoserver:8080/geoserver/wms?SERVICE=WMS&amp;"
+                                              xlink:type="simple"/>
+                           </Get>
+                           <Post>
+                              <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink"
+                                              xlink:href="http://geoserver:8080/geoserver/wms?SERVICE=WMS&amp;"
+                                              xlink:type="simple"/>
+                           </Post>
+                        </HTTP>
+                     </DCPType>
+                  </GetFeatureInfo>
+                  <DescribeLayer>
+                     <Format>application/vnd.ogc.wms_xml</Format>
+                     <DCPType>
+                        <HTTP>
+                           <Get>
+                              <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink"
+                                              xlink:href="http://geoserver:8080/geoserver/wms?SERVICE=WMS&amp;"
+                                              xlink:type="simple"/>
+                           </Get>
+                        </HTTP>
+                     </DCPType>
+                  </DescribeLayer>
+                  <GetLegendGraphic>
+                     <Format>image/png</Format>
+                     <Format>image/jpeg</Format>
+                     <Format>application/json</Format>
+                     <Format>image/gif</Format>
+                     <DCPType>
+                        <HTTP>
+                           <Get>
+                              <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink"
+                                              xlink:href="http://geoserver:8080/geoserver/wms?SERVICE=WMS&amp;"
+                                              xlink:type="simple"/>
+                           </Get>
+                        </HTTP>
+                     </DCPType>
+                  </GetLegendGraphic>
+                  <GetStyles>
+                     <Format>application/vnd.ogc.sld+xml</Format>
+                     <DCPType>
+                        <HTTP>
+                           <Get>
+                              <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink"
+                                              xlink:href="http://geoserver:8080/geoserver/wms?SERVICE=WMS&amp;"
+                                              xlink:type="simple"/>
+                           </Get>
+                        </HTTP>
+                     </DCPType>
+                  </GetStyles>
+               </Request>
+               <Exception>
+                  <Format>application/vnd.ogc.se_xml</Format>
+                  <Format>application/vnd.ogc.se_inimage</Format>
+                  <Format>application/vnd.ogc.se_blank</Format>
+                  <Format>application/json</Format>
+               </Exception>
+               <UserDefinedSymbolization RemoteWFS="1" SupportSLD="1" UserLayer="1" UserStyle="1"/>
+               <Layer noSubsets="0" opaque="0" queryable="0">
+                  <Title>My GeoServer WMS</Title>
+                  <Abstract>
+This is a description of your Web Map Server.
+     </Abstract>
+                  <!--Limited list of EPSG projections:--><SRS>EPSG:4326</SRS>
+                  <LatLonBoundingBox maxx="2.0" maxy="6.0" minx="-2.0" miny="-1.0"/>
+                  <Layer noSubsets="0" opaque="0" queryable="1">
+                     <Name>cite:Bridges</Name>
+                     <Title>cite:Bridges</Title>
+                     <Abstract>Generated from cite</Abstract>
+                     <KeywordList>
+                        <Keyword>Bridges</Keyword>
+                        <Keyword>cite</Keyword>
+                     </KeywordList>
+                     <SRS>EPSG:4326</SRS>
+                     <LatLonBoundingBox maxx="2.1E-4" maxy="7.1E-4" minx="1.9E-4" miny="6.9E-4"/>
+                     <BoundingBox SRS="EPSG:4326" maxx="2.1E-4" maxy="7.1E-4" minx="1.9E-4" miny="6.9E-4"/>
+                     <Style>
+                        <Name>cite_bridges</Name>
+                        <Title>Default Styler</Title>
+                        <LegendURL height="20" width="20">
+                           <Format>image/png</Format>
+                           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink"
+                                           xlink:href="http://geoserver:8080/geoserver/wms?request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=cite%3ABridges"
+                                           xlink:type="simple"/>
+                        </LegendURL>
+                     </Style>
+                  </Layer>
+                  <Layer noSubsets="0" opaque="0" queryable="1">
+                     <Name>cite:Buildings</Name>
+                     <Title>cite:Buildings</Title>
+                     <Abstract>Generated from cite</Abstract>
+                     <KeywordList>
+                        <Keyword>Buildings</Keyword>
+                        <Keyword>cite</Keyword>
+                     </KeywordList>
+                     <SRS>EPSG:4326</SRS>
+                     <LatLonBoundingBox maxx="0.0024" maxy="0.001" minx="8.0E-4" miny="5.0E-4"/>
+                     <BoundingBox SRS="EPSG:4326" maxx="0.0024" maxy="0.001" minx="8.0E-4" miny="5.0E-4"/>
+                     <Style>
+                        <Name>cite_buildings</Name>
+                        <Title>Dashed Outline</Title>
+                        <LegendURL height="20" width="20">
+                           <Format>image/png</Format>
+                           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink"
+                                           xlink:href="http://geoserver:8080/geoserver/wms?request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=cite%3ABuildings"
+                                           xlink:type="simple"/>
+                        </LegendURL>
+                     </Style>
+                  </Layer>
+                  <Layer noSubsets="0" opaque="0" queryable="1">
+                     <Name>cite:DividedRoutes</Name>
+                     <Title>cite:DividedRoutes</Title>
+                     <Abstract>Generated from cite</Abstract>
+                     <KeywordList>
+                        <Keyword>DividedRoutes</Keyword>
+                        <Keyword>cite</Keyword>
+                     </KeywordList>
+                     <SRS>EPSG:4326</SRS>
+                     <LatLonBoundingBox maxx="-0.0026" maxy="0.0024" minx="-0.0032" miny="-0.0024"/>
+                     <BoundingBox SRS="EPSG:4326" maxx="-0.0026" maxy="0.0024" minx="-0.0032" miny="-0.0024"/>
+                     <Style>
+                        <Name>cite_divided_routes</Name>
+                        <Title>Black Line</Title>
+                        <LegendURL height="20" width="20">
+                           <Format>image/png</Format>
+                           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink"
+                                           xlink:href="http://geoserver:8080/geoserver/wms?request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=cite%3ADividedRoutes"
+                                           xlink:type="simple"/>
+                        </LegendURL>
+                     </Style>
+                  </Layer>
+                  <Layer noSubsets="0" opaque="0" queryable="1">
+                     <Name>cite:Forests</Name>
+                     <Title>cite:Forests</Title>
+                     <Abstract>Generated from cite</Abstract>
+                     <KeywordList>
+                        <Keyword>Forests</Keyword>
+                        <Keyword>cite</Keyword>
+                     </KeywordList>
+                     <SRS>EPSG:4326</SRS>
+                     <LatLonBoundingBox maxx="0.0042" maxy="0.0018" minx="-0.0014" miny="-0.0024"/>
+                     <BoundingBox SRS="EPSG:4326" maxx="0.0042" maxy="0.0018" minx="-0.0014" miny="-0.0024"/>
+                     <Style>
+                        <Name>cite_forests</Name>
+                        <Title>PNG Filled Polygon</Title>
+                        <LegendURL height="20" width="20">
+                           <Format>image/png</Format>
+                           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink"
+                                           xlink:href="http://geoserver:8080/geoserver/wms?request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=cite%3AForests"
+                                           xlink:type="simple"/>
+                        </LegendURL>
+                     </Style>
+                  </Layer>
+                  <Layer noSubsets="0" opaque="0" queryable="1">
+                     <Name>cite:Lakes</Name>
+                     <Title>cite:Lakes</Title>
+                     <Abstract>Generated from cite</Abstract>
+                     <KeywordList>
+                        <Keyword>cite</Keyword>
+                        <Keyword>Lakes</Keyword>
+                     </KeywordList>
+                     <SRS>EPSG:4326</SRS>
+                     <LatLonBoundingBox maxx="0.0031" maxy="-1.0E-4" minx="6.0E-4" miny="-0.0018"/>
+                     <BoundingBox SRS="EPSG:4326" maxx="0.0031" maxy="-1.0E-4" minx="6.0E-4" miny="-0.0018"/>
+                     <Style>
+                        <Name>cite_lakes</Name>
+                        <Title>Blue Polygon</Title>
+                        <LegendURL height="20" width="20">
+                           <Format>image/png</Format>
+                           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink"
+                                           xlink:href="http://geoserver:8080/geoserver/wms?request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=cite%3ALakes"
+                                           xlink:type="simple"/>
+                        </LegendURL>
+                     </Style>
+                  </Layer>
+                  <Layer noSubsets="0" opaque="0" queryable="1">
+                     <Name>cite:MapNeatline</Name>
+                     <Title>cite:MapNeatline</Title>
+                     <Abstract>Generated from cite</Abstract>
+                     <KeywordList>
+                        <Keyword>MapNeatline</Keyword>
+                        <Keyword>cite</Keyword>
+                     </KeywordList>
+                     <SRS>EPSG:4326</SRS>
+                     <LatLonBoundingBox maxx="0.0042" maxy="0.0024" minx="-0.0042" miny="-0.0024"/>
+                     <BoundingBox SRS="EPSG:4326" maxx="0.0042" maxy="0.0024" minx="-0.0042" miny="-0.0024"/>
+                     <Style>
+                        <Name>cite_map_neatline</Name>
+                        <Title>Grey Polygon</Title>
+                        <LegendURL height="20" width="20">
+                           <Format>image/png</Format>
+                           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink"
+                                           xlink:href="http://geoserver:8080/geoserver/wms?request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=cite%3AMapNeatline"
+                                           xlink:type="simple"/>
+                        </LegendURL>
+                     </Style>
+                  </Layer>
+                  <Layer noSubsets="0" opaque="0" queryable="1">
+                     <Name>cite:NamedPlaces</Name>
+                     <Title>cite:NamedPlaces</Title>
+                     <Abstract>Generated from cite</Abstract>
+                     <KeywordList>
+                        <Keyword>NamedPlaces</Keyword>
+                        <Keyword>cite</Keyword>
+                     </KeywordList>
+                     <SRS>EPSG:4326</SRS>
+                     <LatLonBoundingBox maxx="0.0042" maxy="0.0024" minx="0.0014" miny="-0.0011"/>
+                     <BoundingBox SRS="EPSG:4326" maxx="0.0042" maxy="0.0024" minx="0.0014" miny="-0.0011"/>
+                     <Style>
+                        <Name>cite_named_places</Name>
+                        <Title>Default Styler</Title>
+                        <LegendURL height="40" width="106">
+                           <Format>image/png</Format>
+                           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink"
+                                           xlink:href="http://geoserver:8080/geoserver/wms?request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=cite%3ANamedPlaces"
+                                           xlink:type="simple"/>
+                        </LegendURL>
+                     </Style>
+                  </Layer>
+                  <Layer noSubsets="0" opaque="0" queryable="1">
+                     <Name>cite:Ponds</Name>
+                     <Title>cite:Ponds</Title>
+                     <Abstract>Generated from cite</Abstract>
+                     <KeywordList>
+                        <Keyword>Ponds</Keyword>
+                        <Keyword>cite</Keyword>
+                     </KeywordList>
+                     <SRS>EPSG:4326</SRS>
+                     <LatLonBoundingBox maxx="-0.0014" maxy="0.002" minx="-0.002" miny="0.0016"/>
+                     <BoundingBox SRS="EPSG:4326" maxx="-0.0014" maxy="0.002" minx="-0.002" miny="0.0016"/>
+                     <Style>
+                        <Name>cite_ponds</Name>
+                        <Title>Cyan Polygon</Title>
+                        <LegendURL height="20" width="20">
+                           <Format>image/png</Format>
+                           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink"
+                                           xlink:href="http://geoserver:8080/geoserver/wms?request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=cite%3APonds"
+                                           xlink:type="simple"/>
+                        </LegendURL>
+                     </Style>
+                  </Layer>
+                  <Layer noSubsets="0" opaque="0" queryable="1">
+                     <Name>cite:RoadSegments</Name>
+                     <Title>cite:RoadSegments</Title>
+                     <Abstract>Generated from cite</Abstract>
+                     <KeywordList>
+                        <Keyword>RoadSegments</Keyword>
+                        <Keyword>cite</Keyword>
+                     </KeywordList>
+                     <SRS>EPSG:4326</SRS>
+                     <LatLonBoundingBox maxx="0.0042" maxy="0.0024" minx="-0.0042" miny="-0.0024"/>
+                     <BoundingBox SRS="EPSG:4326" maxx="0.0042" maxy="0.0024" minx="-0.0042" miny="-0.0024"/>
+                     <Style>
+                        <Name>cite_road_segments</Name>
+                        <Title>Default Styler</Title>
+                        <LegendURL height="60" width="187">
+                           <Format>image/png</Format>
+                           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink"
+                                           xlink:href="http://geoserver:8080/geoserver/wms?request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=cite%3ARoadSegments"
+                                           xlink:type="simple"/>
+                        </LegendURL>
+                     </Style>
+                  </Layer>
+                  <Layer noSubsets="0" opaque="0" queryable="1">
+                     <Name>cite:Streams</Name>
+                     <Title>cite:Streams</Title>
+                     <Abstract>Generated from cite</Abstract>
+                     <KeywordList>
+                        <Keyword>Streams</Keyword>
+                        <Keyword>cite</Keyword>
+                     </KeywordList>
+                     <SRS>EPSG:4326</SRS>
+                     <LatLonBoundingBox maxx="0.0036" maxy="0.0024" minx="-4.0E-4" miny="-0.0024"/>
+                     <BoundingBox SRS="EPSG:4326" maxx="0.0036" maxy="0.0024" minx="-4.0E-4" miny="-0.0024"/>
+                     <Style>
+                        <Name>cite_streams</Name>
+                        <Title>Default Styler</Title>
+                        <LegendURL height="20" width="20">
+                           <Format>image/png</Format>
+                           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink"
+                                           xlink:href="http://geoserver:8080/geoserver/wms?request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=cite%3AStreams"
+                                           xlink:type="simple"/>
+                        </LegendURL>
+                     </Style>
+                  </Layer>
+               </Layer>
+            </Capability>
+            <!--Response received in [12736] milliseconds--></WMT_MS_Capabilities>
+      </value>
+   </param>
+   <param local-name="VAR_WMS_GET_CAPABILITIES_HTTP_GET_URL" namespace-uri="" prefix=""
+          type="document-node()">
+      <value>http://geoserver:8080/geoserver/wms?SERVICE=WMS&amp;</value>
+   </param>
+   <param local-name="VAR_WMS_GET_FEATURE_INFO_HTTP_GET_URL" namespace-uri="" prefix=""
+          type="document-node()">
+      <value>http://geoserver:8080/geoserver/wms?SERVICE=WMS&amp;</value>
+   </param>
+   <param local-name="VAR_WMS_GET_MAP_HTTP_GET_URL" namespace-uri="" prefix=""
+          type="document-node()">
+      <value>http://geoserver:8080/geoserver/wms?SERVICE=WMS&amp;</value>
+   </param>
+   <param local-name="VAR_WMS_VERSION" namespace-uri="" prefix="" type="document-node()">
+      <value>1.1.1</value>
+   </param>
+</params>
+</starttest>
