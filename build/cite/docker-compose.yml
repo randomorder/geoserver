@@ -12,7 +12,7 @@ services:
         # GEOSERVER_DATA_DIR_SRC: "./datadir.tar.gz"
         # TOMCAT_EXTRAS: "false"
     ports:
-      - ${GEOSERVER_PORT:-8080}:8080
+      - 8080
     healthcheck:
       test: ["CMD", "curl", "--fail", "-s", "http://localhost:8080/geoserver/wms?request=GetCapabilities&version=1.3.0", "||", "exit", "1" ]
       interval: 10s
@@ -34,7 +34,7 @@ services:
   teamengine:
     image: ogccite/teamengine:${TEAMENGINE_TAG:-latest}
     ports:
-      - ${TEAMENGINE_PORT:-8888}:8080
+      - 8080
     depends_on:
       - geoserver
     volumes:
