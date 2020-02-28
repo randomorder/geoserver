@@ -32,7 +32,7 @@ services:
     - gs_gwc_cache_dir:/var/geoserver/gwc_cache_dir:rw
 
   teamengine:
-    image: ogccite/teamengine:${TEAMENGINE_TAG:-latest}
+    image: geosolutionsit/teamengine:${TEAMENGINE_TAG:-latest}
     ports:
       - 8080
     depends_on:
