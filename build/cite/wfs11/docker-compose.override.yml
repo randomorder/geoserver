@@ -7,7 +7,7 @@ services:
       - postgres
     build:
       args:
-        GEOSERVER_DATA_DIR_SRC: "./data/citewfs-1.1"
+        GEOSERVER_DATA_DIR_SRC: "./wfs11/citewfs-1.1"
 
   teamengine:
     volumes:

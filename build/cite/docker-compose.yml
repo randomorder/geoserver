@@ -4,9 +4,9 @@ services:
   geoserver:
     image: ogccite/geoserver:${GEOSERVER_TAG:-latest}
     build:
-      #context: .
-      context: ../../
-      dockerfile: ./build/cite/geoserver/Dockerfile
+      context: .
+      #context: ../../
+      dockerfile: ./geoserver/Dockerfile
       args:
         GEOSERVER_WEBAPP_SRC: "https://build.geoserver.org/geoserver/master/geoserver-master-latest-war.zip"
         # GEOSERVER_DATA_DIR_SRC: "./datadir.tar.gz"

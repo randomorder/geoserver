@@ -5,7 +5,7 @@ services:
     image: ogccite/geoserver:wcs11
     build:
       args:
-        GEOSERVER_DATA_DIR_SRC: "./data/citewcs-1.1"
+        GEOSERVER_DATA_DIR_SRC: "./wcs11/citewcs-1.1"
 
   teamengine:
     volumes:
