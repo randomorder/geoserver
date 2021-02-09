@@ -20,6 +20,7 @@ services:
     volumes:
     - gs_logs:/var/geoserver/logs:rw
     - gs_gwc_cache_dir:/var/geoserver/gwc_cache_dir:rw
+    privileged: true
 
   teamengine:
     image: geosolutionsit/teamengine:${TEAMENGINE_TAG:-latest}
