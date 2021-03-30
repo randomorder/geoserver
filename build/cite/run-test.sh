@@ -99,6 +99,11 @@ wcs11 () {
   _run
 }
 
+interactive () {
+/usr/local/tomcat/bin/startup.sh
+while true; do sleep 10; done
+}
+
 run_all () {
 
   # WMS

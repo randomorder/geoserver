@@ -1,0 +1,7 @@
+version: '3.0'
+
+services:
+  teamengine:
+#    volumes:
+#      - ./wcs10/wcs-1.0.0.xml:/root/te_base/forms/wcs-1.0.0.xml
+    command: /run-test.sh interactive

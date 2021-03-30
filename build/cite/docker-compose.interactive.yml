@@ -1,0 +1,12 @@
+version: '3.0'
+
+services:
+  teamengine:
+    image: geosolutionsit/teamengine:${TEAMENGINE_TAG:-latest}
+    ports:
+      - 8080
+    depends_on:
+      - geoserver
+    volumes:
+      - ./logs:/root/te_base/users/root
+      - ./run-test.sh:/run-test.sh

@@ -28,3 +28,7 @@ build: $(suite)		## Will Build the GeoServer Docker Image for the Environment.
 test: $(suite)		## Will running the Suite test with teamengine.
 	@echo running the Suite test with teamengine
 	docker-compose -f docker-compose.yml -f ./$(suite)/docker-compose.override.yml up --force-recreate --exit-code-from teamengine teamengine
+
+test_interactive:		## Will running the teamengine in the webUI
+	@echo running the Suite test with teamengine
+	docker-compose -f docker-compose.yml -f ./interactive/docker-compose.override.yml up --force-recreate --exit-code-from teamengine teamengine
