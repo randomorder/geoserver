@@ -243,8 +243,7 @@ Requirements:
         clean: $(suite)		 Will Clean the Environment of previous runs.
         build: $(suite)		 Will Build the GeoServer Docker Image for the Environment.
         test: $(suite)		 Will running the Suite test with teamengine.
-        test_interactive:		 Will running the Suite test with teamengine.
-        interactive: $(suite)		 Will running the Suite test with teamengine.
+        webUI: $(suite)		 Will running the Suite test with teamengine.
 
 
 Run WFS 1.0 tests
@@ -265,7 +264,7 @@ Requirements:
 
    .. code:: shell
 
-     make interactive suite=wfs10
+     make webUI
 
 #. Go to the browser and open the URL: http://localhost:8888/teamengine/
 
@@ -277,7 +276,7 @@ Requirements:
 
    #. ``Enable tests with multiple namespaces`` tests included
 
-      .. image:: tewfs-1_0.png
+      .. image:: ./image/tewfs-1_0.png
 
 Run WFS 1.1 tests
 -----------------
@@ -298,7 +297,7 @@ Requirements:
 
    .. code:: shell
 
-     make interactive suite=wfs10
+     make webUI
 
 #. Go to the browser and open the URL: http://localhost:8888/teamengine/
 
@@ -315,7 +314,7 @@ Requirements:
 
    #. ``GML Simple Features``: ``SF-0``
 
-   .. image:: tewfs-1_1.png
+   .. image:: ./image/tewfs-1_1.png
 
 Run WMS 1.1 tests
 -----------------
@@ -324,7 +323,7 @@ Run WMS 1.1 tests
 
    .. code:: shell
 
-     make interactive suite=wms11
+     make webUI
 
 #. Go to the browser and open the URL: http://localhost:8888/teamengine/
 
@@ -353,9 +352,9 @@ Run WMS 1.1 tests
 
    #. Click ``OK``
 
-   .. image:: tewms-1_1a.png
+   .. image:: ./image/tewms-1_1a.png
 
-   .. image:: tewms-1_1b.png
+   .. image:: ./image/tewms-1_1b.png
 
 Run WCS 1.0 tests
 -----------------
@@ -364,7 +363,7 @@ Run WCS 1.0 tests
 
    .. code:: shell
 
-     make interactive suite=wcs10
+     make webUI
 
 #. Go to the browser and open the URL: http://localhost:8888/teamengine/
 
@@ -399,11 +398,11 @@ Run WCS 1.0 tests
 
    #. Click ``OK``
 
-   .. image:: tewcs-1_0a.png
+   .. image:: ./image/tewcs-1_0a.png
 
-   .. image:: tewcs-1_0b.png
+   .. image:: ./image/tewcs-1_0b.png
 
-   .. image:: tewcs-1_0c.png
+   .. image:: ./image/tewcs-1_0c.png
 
 
 Run WCS 1.1 tests
@@ -413,7 +412,7 @@ Run WCS 1.1 tests
 
    .. code:: shell
 
-     make interactive suite=wcs11
+     make webUI
 
 #. Go to the browser and open the URL: http://localhost:8888/teamengine/
 
@@ -423,11 +422,11 @@ Run WCS 1.1 tests
 
    #. ``Capabilities URL``:
 
-         http://localhost:8080/geoserver/wcs?service=wcs&request=getcapabilities&version=1.1.1
+         http://<ip.of.the.geoserver>:8080/geoserver/wcs?service=wcs&request=getcapabilities&version=1.1.1
 
    Click ``Next``
 
-   .. image:: tewcs-1_1a.png
+   .. image:: ./image/tewcs-1_1a.png
 
 
 
