@@ -8,6 +8,7 @@ A step by step guide to the GeoServer Compliance Interoperability Test Engine (C
 .. contents::
 ~~~~~~~~~~~~~
 
+
 Check out CITE suite tools
 --------------------------
 
@@ -17,77 +18,264 @@ Check out CITE suite tools
 Requirements:
 -------------
 
-<<<<<<< HEAD
 - `GeoServer <https://github.com/geosolutions-it/geoserver>`_.
-=======
-- `GeoServer <https://github.com/geoserver/geoserver>`_.
->>>>>>> 715a9cbace94958fd1ec7f5a81e740ed2f999898
 
 - :ref:`Teamengine Web Application<Teamengine Web Application>`
 
+
+CITE automation tests with docker
+=================================
+
+
+How to automate the CITE Tests with
+`docker <https://www.docker.com>`_.
+
+Requirements:
+-------------
+
+- Running the tests requires a linux system with `docker <https://www.docker.com>`_, `docker-compose <https://docs.docker.com/compose/install>`_, and git installed on it.
+
 .. note::
 
-   To build every suite test you need to do the next steps:
+   The CITE tools are available in the build/cite folder of the `GeoServer repository <https://github.com/geoserver/geoserver/tree/master/build/cite>`_:
 
-  .. code:: shell
+Steps:
+------
 
-      git clone https://github.com/opengeospatial/ets-wcs10.git
-      cd ets-wcs10.git
-      mvn install
+**Set-up the environment.**
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   #.  Clone the repository.
+
+       .. code:: shell
+
+          git clone https://github.com/randomorder/geoserver.git --branch GSIP-176
+
+   #.  go the cite directory.
+
+       .. code:: shell
+
+          cd geoserver/build/cite
+
+   #.  inside will find a structure like below with a list of directories with the name of the suites to run.
+
+       .. code:: shell
+
+          cite
+          |-- forms
+          |-- geoserver
+          |-- run-test.sh
+          |-- wcs10
+          |-- wcs11
+          |-- wfs10
+          |-- wms11
+          |-- wms13
+          |-- wfs11
+          |-- logs
+          |-- docker-compose.yml
+          |-- postgres
+          |-- README.md
+          `-- Makefile
+
+**Running the suite tests.**
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   There is 2 way to run the suites, one is running with make that will
+   automate all the commands, and the second one is running the test through WebUI:
+
+   1. Running the through Makefile:
+
+      -  run ``make`` in the console, will give you the list of commands
+         to run.
+
+         .. code:: shell
+
+            make
+
+      -  the output will like this:
+
+         .. code:: makefile
+
+            clean: $(suite)         Will Clean the Environment of previous runs.
+            build: $(suite)         Will Build the GeoServer Docker Image for the Environment.
+            test: $(suite)      Will running the Suite test with teamengine.
+      - Choose which test to run by setting the Suite environment variable:
+
+        .. code:: SHELL
+
+           suite=wcs10
+
+        .. note::
+
+           Valid values for the Suite parameter are
+             * wcs10
+             * wcs11
+             * wfs10
+             * wfs11
+             * wms11
+             * wms13
+
+      - Choose which GeoServer war to test by setting the ``war_url`` environment variable inside the ``Makefile``, ex:
+
+        .. code:: C
+
+          war_url = "https://build.geoserver.org/geoserver/master/geoserver-master-latest-war.zip"
+
+      -  To clean the local environment.
+
+         .. code:: shell
+
+            make clean suite=<suite-name>
+
+      -  To build the geoserver docker image locally.
+
+         .. code:: shell
+
+            make build suite=<suite-name>
+
+      -  To run the suite test.
+
+         .. code:: shell
+
+            make test suite=<suite-name>
+
+      -  And the last, but no less important run the full automate
+         workflow.
+
+         .. note::
+
+            The first Docker build may take a long time.
+
+         .. code:: shell
+
+            make clean build test suite=<suite-name>
+
+   2. Running the test in the WebUI.
+
+      - To run the test in the WebUI, you should change the ``command`` parameter in the ``docker-compose.override.yml``.
+      - To do so, you get in to any folder of the suite that you want to run.
+
+        .. code:: SHELL
+
+           cd wcs10
+
+      - change ``command: /run-test.sh wcs10`` to ``command: /run-test.sh interactive``
+      - map the port of the teamengine to the port of your preference in the host. ex: change ``8080`` to ``8888:8080``
+
+        .. code:: YAML
+
+           ports:
+             - 8888:8080
+
+      - then run ``make test suite=wcs10``
+      - when the command finish to build teamengine image and run the container, you can access to the WebUI through the browser at: ``http://localhost:8888``
+      - after finish the test run in the terminal ``make clean suite=<suite-name>``
+
+How to run TEAM Engine standalone
+---------------------------------
+- To run a standalone version of TEAM Engine, start it with the following command:
+
+  .. code:: SHELL
+
+     docker run -d --name standalone_teamengine -p 8080:8080 geosolutionsit/teamengine:latest
+
+- TEAM Engine will be accessible on http://localhost:8080/teamengine/
+
+- If you want to change the port, for example to have it on port "9090", change the command as follows:
+
+  .. code:: SHELL
+
+     docker run -d --name standalone_teamengine -p 9090:8080 geosolutionsit/teamengine:latest
+
+- To stop TEAM Engine:
+
+  .. code:: SHELL
+
+     docker stop standalone_teamengine
+
+Run CITE Test Suites in local pc
+================================
+
+.. note::
+
+   I assume that you have an standalone geoserver running.
+
+
+Requirements:
+~~~~~~~~~~~~~
+- GeoServer running.
+
+- PostgreSQL with PostGIS extension installed. (only for the WFS Test Suite)
+
+- Teamengine Running in docker container.
+
+- `GeoServer repository <https://github.com/randomorder/geoserver>`_
+
+.. important::
+
+    Recommended to run the teamengine in docker with the Makefile, since can spinning up a postgres server integrated.
+
+#. Clone the repository:
+
+   .. code:: shell
+
+      git clone https://github.com/randomorder/geoserver.git --branch GSIP-176
+
+#. Change directory to the ``cite``
+
+   .. code:: shell
+
+      cd geoserver/build/cite
+
+#. Check the commands available:
+
+   - Run ``make`` to check:
+
+   .. code:: shell
+
+        make
+
+
+   - you should get an output as following:
+
+   .. code:: makefile
+
+        clean: $(suite)		 Will Clean the Environment of previous runs.
+        build: $(suite)		 Will Build the GeoServer Docker Image for the Environment.
+        test: $(suite)		 Will running the Suite test with teamengine.
+        test_interactive:		 Will running the Suite test with teamengine.
+        interactive: $(suite)		 Will running the Suite test with teamengine.
+
 
 Run WFS 1.0 tests
 -----------------
 
 .. important::
 
-   Running WFS 1.0 tests require PostGIS to be installed on the system.
+   Running WFS 1.0 tests require PostgreSQL with PostGIS extension installed to be installed on the system.
 
 Requirements:
 ~~~~~~~~~~~~~
+- `GeoServer <https://github.com/randomorder/geoserver>_`
+- teamengine
 - Posgresql
 - PostGIS
 
-#. Create a PostGIS user named "cite":
-
-   .. code:: SQL
-
-      CREATEUSER cite
-
-#. Create a PostGIS databased named "cite", owned by the "cite" user:
-
-   .. code:: SQL
-
-      CREATEDB -T template_postgis -U cite cite
-
-#. Change directory to the ``citewfs-1.0`` data directory and execute the script ``cite_data.sql``:
+#. Start the test:
 
    .. code:: shell
 
-     psql -U cite cite < cite_data.sql
+     make interactive suite=wfs10
 
-#. Start GeoServer with the ``citewfs-1.0`` data directory. Example:
+#. Go to the browser and open the URL: http://localhost:8888/teamengine/
 
-   .. code:: shell
+   - after the site open, you need to create an account to run the tests.
 
-     cd <root of geoserver install>
-<<<<<<< HEAD
-     export GEOSERVER_DATA_DIR=<root of geoserver sources>/data/citewfs-1.0
-=======
-     export GEOSERVER_DATA_DIR=<root of geoserver sources>/build/cite/wfs11/citewfs-1.1
->>>>>>> 715a9cbace94958fd1ec7f5a81e740ed2f999898
-     ./bin/startup.sh
-
-#. Change directory back to the cite tools and run the tests:
-
-   .. code:: shell
-
-     ant wfs-1.0
-     
    With the following parameters:
 
-   #. ``Capabilities URL`` http://localhost:8080/geoserver/wfs?request=getcapabilities&service=wfs&version=1.0.0
+   #. ``Capabilities URL`` http://<ip.of.the.goserver>:8080/geoserver/wfs?request=getcapabilities&service=wfs&version=1.0.0
 
-   #. ``All`` tests included
+   #. ``Enable tests with multiple namespaces`` tests included
 
       .. image:: tewfs-1_0.png
 
@@ -100,49 +288,25 @@ Run WFS 1.1 tests
 
 Requirements:
 ~~~~~~~~~~~~~
+- GeoServer
+- teamengine
 - Posgresql
 - PostGIS
 
 
-#. Create a PostGIS user named "cite":
+#. Start the test:
 
-   .. code:: SQL
+   .. code:: shell
 
-     createuser cite
+     make interactive suite=wfs10
 
-#. Create a PostGIS databased named "cite", owned by the "cite" user:
+#. Go to the browser and open the URL: http://localhost:8888/teamengine/
 
-   .. code:: SQL
-
-     createdb -T template_postgis -U cite cite
-
-#. Change directory to the ``citewfs-1.1`` data directory and execute the script ``dataset-sf0.sql``:
-
-   .. code:: SQL
-
-     psql -U cite cite < dataset-sf0.sql
-
-#. Start GeoServer with the ``citewfs-1.1`` data directory. Example:
-
-   .. code:: SHELL
-
-     cd <root of geoserver install>
-<<<<<<< HEAD
-     export GEOSERVER_DATA_DIR=<root of geoserver sources>/data/citewfs-1.1
-=======
-     export GEOSERVER_DATA_DIR=<root of geoserver sources>/build/cite/wfs11/citewfs-1.1
->>>>>>> 715a9cbace94958fd1ec7f5a81e740ed2f999898
-     ./bin/startup.sh
-
-#. Change directory back to the cite tools and run the tests:
-
-   .. code:: SHELL
-
-     ant wfs-1.1
+   - after the site open, you need to create an account to run the tests.
 
    With the following parameters:
 
-   #. ``Capabilities URL`` http://localhost:8080/geoserver/wfs?service=wfs&request=getcapabilities&version=1.1.0
+   #. ``Capabilities URL`` http://<ip.of.the.goserver>:8080/geoserver/wfs?service=wfs&request=getcapabilities&version=1.1.0
 
    #. ``Supported Conformance Classes``:
 
@@ -151,22 +315,26 @@ Requirements:
 
    #. ``GML Simple Features``: ``SF-0``
 
-   .. image:: tewfs-1_1.jpg
+   .. image:: tewfs-1_1.png
 
 Run WMS 1.1 tests
 -----------------
 
-#. Start GeoServer with the ``citewms-1.1`` data directory. 
+#. Start the test:
 
-#. Change directory back to the cite tools and run the tests::
+   .. code:: shell
 
-     ant wms-1.1
+     make interactive suite=wms11
 
-   With the following parameters:     
+#. Go to the browser and open the URL: http://localhost:8888/teamengine/
+
+   - after the site open, you need to create an account to run the tests.
+
+   With the following parameters:
 
    #. ``Capabilities URL``
 
-          http://localhost:8080/geoserver/wms?service=wms&request=getcapabilities&version=1.1.1
+          http://<ip.of.the.geoserver>:8080/geoserver/wms?service=wms&request=getcapabilities&version=1.1.1
 
    #. ``UpdateSequence Values``:
 
@@ -182,59 +350,31 @@ Run WMS 1.1 tests
       * Ensure ``GML FeatureInfo`` is *checked*
       * Ensure ``Fees and Access Constraints`` is *checked*
       * For ``BoundingBox Constraints`` ensure ``Either`` is selected
-     
+
    #. Click ``OK``
 
-   .. image:: tewms-1_1a.jpg
+   .. image:: tewms-1_1a.png
 
-   .. image:: tewms-1_1b.jpg
-
-Run WCS 1.1 tests
------------------
-
-#. Start GeoServer with the ``citewcs-1.1`` data directory.
-
-#. Change directory back to the cite tools and run the tests::
-
-     ant wcs-1.1
-     
-   With the following parameters:
-   
-   #. ``Capabilities URL``:
-
-         http://localhost:8080/geoserver/wcs?service=wcs&request=getcapabilities&version=1.1.1
-   
-   Click ``Next``
-
-   .. image:: tewcs-1_1a.jpg
-
-#. Accept the default values and click ``Submit``
-
-   .. image:: tewcs-1_1b.jpg
+   .. image:: tewms-1_1b.png
 
 Run WCS 1.0 tests
 -----------------
 
-.. warning:: 
+#. Start the test:
 
-   The WCS specification does not allow a cite compliant WCS 1.0 and
-   1.1 version to co-exist. To successfully run the WCS 1.0 cite tests
-   the ``wms1_1-<VERSION>.jar`` must be removed from the geoserver 
-   ``WEB-INF/lib`` directory.
-   
-#. Remove the ``wcs1_1-<VERSION>.jar`` from ``WEB-INF/lib`` directory.
+   .. code:: shell
 
-#. Start GeoServer with the ``citewcs-1.0`` data directory.
+     make interactive suite=wcs10
 
-#. Change directory back to the cite tools and run the tests::
+#. Go to the browser and open the URL: http://localhost:8888/teamengine/
 
-     ant wcs-1.0
-     
+   - after the site open, you need to create an account to run the tests.
+
    With the following parameters:
 
    #. ``Capabilities URL``:
-        
-          http://localhost:8080/geoserver/wcs?service=wcs&request=getcapabilities&version=1.0.0
+
+          http://<ip.of.the.geoserver>:8080/geoserver/wcs?service=wcs&request=getcapabilities&version=1.0.0
 
    #. ``MIME Header Setup``: "image/tiff"
 
@@ -249,39 +389,48 @@ Run WCS 1.0 tests
       * "0.1" for ``RESY``
 
    #. ``Options``:
-  
+
       * Ensure ``Verify that the server supports XML encoding`` is *checked*
       * Ensure ``Verify that the server supports range set axis`` is *checked*
 
    #. ``Schemas``:
 
-      * Ensure that ``original schemas`` is selected
+      * Ensure that ``The server implements the original schemas from the WCS 1.0.0 scpecification (OGC 03-065`` is selected
 
    #. Click ``OK``
 
-   .. image:: tewcs-1_0a.jpg
+   .. image:: tewcs-1_0a.png
 
-   .. image:: tewcs-1_0b.jpg
+   .. image:: tewcs-1_0b.png
+
+   .. image:: tewcs-1_0c.png
+
+
+Run WCS 1.1 tests
+-----------------
+
+#. Start the test:
+
+   .. code:: shell
+
+     make interactive suite=wcs11
+
+#. Go to the browser and open the URL: http://localhost:8888/teamengine/
+
+   - after the site open, you need to create an account to run the tests.
+
+   With the following parameters:
+
+   #. ``Capabilities URL``:
+
+         http://localhost:8080/geoserver/wcs?service=wcs&request=getcapabilities&version=1.1.1
+
+   Click ``Next``
+
+   .. image:: tewcs-1_1a.png
+
+
 
 .. _commandline:
 
 .. _teamengine:
-Teamengine Web Application
---------------------------
-
-The Teamengine web application is useful for analyzing results of a test run. To run the web application execute::
-
-  ant webapp
-  
-From the cite tools checkout. Once started the web app will be available at:
-
-  http://localhost:9090/teamengine
-  
-To run on a different port pass the ``-Dengine.port`` system property to ant command.
-
-.. include:: ./guide.rst
-
-
-
-
-
