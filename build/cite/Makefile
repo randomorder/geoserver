@@ -15,18 +15,22 @@ help:
 
 clean: $(suite)		## Will Clean the Environment of previous runs.
 	@echo Cleaning up previous runs
-	docker-compose -f docker-compose.yml -f ./$(suite)/docker-compose.override.yml down --remove-orphans --rmi all -v
+	docker-compose -f docker-compose.yml -f ./$(suite)/docker-compose.override.yml \
+      down --remove-orphans --rmi all -v
 	docker-compose -f docker-compose.yml -f ./$(suite)/docker-compose.override.yml rm -vfs
 	rm -Rf logs/
 
 build: $(suite)		## Will Build the GeoServer Docker Image for the Environment.
 	@echo Build the GeoServer Docker Image
-	docker-compose -f docker-compose.yml -f ./$(suite)/docker-compose.override.yml build --build-arg GEOSERVER_WEBAPP_SRC=${war_url} geoserver
+	docker-compose -f docker-compose.yml -f ./$(suite)/docker-compose.override.yml \
+      build --build-arg GEOSERVER_WEBAPP_SRC=${war_url} geoserver
 
 test: $(suite)		## Will running the Suite test with teamengine.
 	@echo running the Suite test with teamengine
-	docker-compose -f docker-compose.yml -f ./$(suite)/docker-compose.override.yml up --force-recreate --exit-code-from teamengine teamengine
+	docker-compose -f docker-compose.yml -f ./$(suite)/docker-compose.override.yml \
+      up --force-recreate --exit-code-from teamengine teamengine
 
 webUI:		## Will running the Suite test with teamengine.
 	@echo running the Suite test with teamengine webUI
-	docker-compose -f docker-compose.yml -f ./interactive/docker-compose.override.yml up --force-recreate --no-deps --exit-code-from teamengine teamengine
+	docker-compose -f docker-compose.yml -f ./interactive/docker-compose.override.yml \
+      up --force-recreate --no-deps --exit-code-from teamengine teamengine
