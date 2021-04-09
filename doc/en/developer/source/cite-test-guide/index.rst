@@ -80,7 +80,7 @@ Steps:
 **Running the suite tests.**
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-   There is 2 way to run the suites, one is running with make that will
+   There is 2 way to run the suites, one is running with `make` that will
    automate all the commands, and the second one is running the test through WebUI:
 
    1. Running the through Makefile:
