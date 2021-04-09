@@ -6,7 +6,7 @@
 
 .DEFAULT_GOAL := help
 .PHONY = help
-suite=${1}
+suite =
 war_url = "https://build.geoserver.org/geoserver/main/geoserver-main-latest-war.zip"
 
 
