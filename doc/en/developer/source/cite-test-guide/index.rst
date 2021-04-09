@@ -49,7 +49,7 @@ Steps:
 
        .. code:: shell
 
-          git clone https://github.com/randomorder/geoserver.git --branch GSIP-176
+          git clone https://github.com/geoserver/geoserver.git
 
    #.  go the cite directory.
 
