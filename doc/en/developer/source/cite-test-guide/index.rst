@@ -6,6 +6,7 @@ Cite Test Guide
 A step by step guide to the GeoServer Compliance Interoperability Test Engine (CITE).
 
 .. contents::
+
 ~~~~~~~~~~~~~
 
 
@@ -20,7 +21,7 @@ Requirements:
 
 - `GeoServer <https://github.com/geosolutions-it/geoserver>`_.
 
-- :ref:`Teamengine Web Application<Teamengine Web Application>`
+- Teamengine Web Application
 
 
 CITE automation tests with docker
@@ -37,19 +38,19 @@ Requirements:
 
 .. note::
 
-   The CITE tools are available in the build/cite folder of the `GeoServer repository <https://github.com/geoserver/geoserver/tree/master/build/cite>`_:
+   The CITE tools are available in the build/cite folder of the `GeoServer Git repository <https://github.com/geoserver/geoserver/tree/master/build/cite>`_:
 
 Steps:
 ------
 
-**Set-up the environment.**
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Set-up the environment.
+~~~~~~~~~~~~~~~~~~~~~~~
 
    #.  Clone the repository.
 
        .. code:: shell
 
-          git clone https://github.com/randomorder/geoserver.git --branch GSIP-176
+          git clone https://github.com/geosolutions-it/geoserver.git
 
    #.  go the cite directory.
 
@@ -77,10 +78,10 @@ Steps:
           |-- README.md
           `-- Makefile
 
-**Running the suite tests.**
+Running the suite tests.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-   There is 2 way to run the suites, one is running with make that will
+   There is 2 way to run the suites, one is running with `make` that will
    automate all the commands, and the second one is running the test through WebUI:
 
    1. Running the through Makefile:
@@ -99,7 +100,12 @@ Steps:
             clean: $(suite)         Will Clean the Environment of previous runs.
             build: $(suite)         Will Build the GeoServer Docker Image for the Environment.
             test: $(suite)      Will running the Suite test with teamengine.
+
       - Choose which test to run by setting the Suite environment variable:
+
+        .. warning::
+
+            The first Docker build may take a long time.
 
         .. code:: SHELL
 
@@ -107,7 +113,7 @@ Steps:
 
         .. note::
 
-           Valid values for the Suite parameter are
+           Valid values for the Suite variable are
              * wcs10
              * wcs11
              * wfs10
@@ -142,37 +148,16 @@ Steps:
       -  And the last, but no less important run the full automate
          workflow.
 
-         .. note::
 
-            The first Docker build may take a long time.
 
          .. code:: shell
 
             make clean build test suite=<suite-name>
 
-   2. Running the test in the WebUI.
 
-      - To run the test in the WebUI, you should change the ``command`` parameter in the ``docker-compose.override.yml``.
-      - To do so, you get in to any folder of the suite that you want to run.
+How to run TEAM Engine as single docker container.
+---------------------------------------------------
 
-        .. code:: SHELL
-
-           cd wcs10
-
-      - change ``command: /run-test.sh wcs10`` to ``command: /run-test.sh interactive``
-      - map the port of the teamengine to the port of your preference in the host. ex: change ``8080`` to ``8888:8080``
-
-        .. code:: YAML
-
-           ports:
-             - 8888:8080
-
-      - then run ``make test suite=wcs10``
-      - when the command finish to build teamengine image and run the container, you can access to the WebUI through the browser at: ``http://localhost:8888``
-      - after finish the test run in the terminal ``make clean suite=<suite-name>``
-
-How to run TEAM Engine standalone
----------------------------------
 - To run a standalone version of TEAM Engine, start it with the following command:
 
   .. code:: SHELL
@@ -202,24 +187,22 @@ Run CITE Test Suites in local pc
 
 
 Requirements:
-~~~~~~~~~~~~~
+-------------
+
 - GeoServer running.
 
-- PostgreSQL with PostGIS extension installed. (only for the WFS Test Suite)
+- PostgreSQL with PostGIS extension installed. (only for the WFS Tests Suites)
 
 - Teamengine Running in docker container.
 
-- `GeoServer repository <https://github.com/randomorder/geoserver>`_
+- `GeoServer repository <https://github.com/geoserver/geoserver.git>`_
 
-.. important::
-
-    Recommended to run the teamengine in docker with the Makefile, since can spinning up a postgres server integrated.
 
 #. Clone the repository:
 
    .. code:: shell
 
-      git clone https://github.com/randomorder/geoserver.git --branch GSIP-176
+      git clone https://github.com/geoserver/geoserver.git
 
 #. Change directory to the ``cite``
 
@@ -255,10 +238,54 @@ Run WFS 1.0 tests
 
 Requirements:
 ~~~~~~~~~~~~~
-- `GeoServer <https://github.com/randomorder/geoserver>_`
+
+- `GeoServer running`
 - teamengine
 - Posgresql
 - PostGIS
+
+#. Prepare the environment:
+
+   - login in postgresql and create a user named "cite".
+
+   .. code:: sql
+
+     createuser cite;
+
+   - Create a database named "cite", owned by the "cite" user:
+
+   .. code:: sql
+
+     createdb cite own by cite;
+
+   - enter to the database and enable the postgis extension:
+
+   .. code:: sql
+
+    create extension postgis;
+
+   - Change directory to the citewfs-1.0 data directory and execute the script cite_data_postgis2.sql:
+
+   .. code-block:: shell
+
+    cd <root of geoserver repository>
+    psql -U cite cite < cite_data_postgis2.sql
+
+   - Start GeoServer with the citewfs-1.0 data directory. Example:
+
+   .. important::
+
+     If the postgresql server is not in the same host of the geoserver, you have to change the `<entry key="host">localhost</entry>` in the `datastore.xml` file, located inside each workspace directory. ex.
+
+     .. note::
+
+       <root of geoserver sources>/data/citewfs-1.0/workspaces/cgf/cgf/datastore.xml
+
+   .. code-block:: shell
+
+    cd <root of geoserver install>
+    export GEOSERVER_DATA_DIR=<root of geoserver sources>/data/citewfs-1.0
+    ./bin/startup.sh
 
 #. Start the test:
 
@@ -268,7 +295,7 @@ Requirements:
 
 #. Go to the browser and open the URL: http://localhost:8888/teamengine/
 
-   - after the site open, you need to create an account to run the tests.
+   - after the site open, click on the **Sign in** button and enter the user and password. 
 
    With the following parameters:
 
@@ -283,7 +310,7 @@ Run WFS 1.1 tests
 
 .. important::
 
-   Running WFS 1.1 tests require PostGIS to be installed on the system.
+   Running WFS 1.1 tests require PostgreSQL with PostGIS extension installed to be installed on the system.
 
 Requirements:
 ~~~~~~~~~~~~~
@@ -291,6 +318,49 @@ Requirements:
 - teamengine
 - Posgresql
 - PostGIS
+
+#. Prepare the environment:
+
+   - login in postgresql and create a user named "cite".
+
+   .. code:: sql
+
+     createuser cite;
+
+   - Create a database named "cite", owned by the "cite" user:
+
+   .. code:: sql
+
+     createdb cite own by cite;
+
+   - enter to the database and enable the postgis extension:
+
+   .. code:: sql
+
+    create extension postgis;
+
+   - Change directory to the citewfs-1.1 data directory and execute the script dataset-sf0-postgis2.sql:
+
+   .. code-block:: shell
+
+    cd <root of geoserver repository>
+    psql -U cite cite < dataset-sf0-postgis2.sql
+
+   - Start GeoServer with the citewfs-1.1 data directory. Example:
+
+   .. important::
+
+     If the postgresql server is not in the same host of the geoserver, you have to change the `<entry key="host">localhost</entry>` in the `datastore.xml` file, located inside each workspace directory. ex.
+
+     .. note::
+
+       <root of geoserver sources>/data/citewfs-1.1/workspaces/cgf/cgf/datastore.xml
+
+   .. code-block:: shell
+
+    cd <root of geoserver install>
+    export GEOSERVER_DATA_DIR=<root of geoserver sources>/data/citewfs-1.1
+    ./bin/startup.sh
 
 
 #. Start the test:
@@ -301,7 +371,9 @@ Requirements:
 
 #. Go to the browser and open the URL: http://localhost:8888/teamengine/
 
-   - after the site open, you need to create an account to run the tests.
+   - after the site open, click on the **Sign in** button and enter the user and password.
+
+   .. note:: the Default username/password are **teamengine/teamengine**.
 
    With the following parameters:
 
@@ -319,6 +391,16 @@ Requirements:
 Run WMS 1.1 tests
 -----------------
 
+#. Prepare the environment:
+
+  - Start GeoServer with the citewms-1.1 data directory. Example:
+
+   .. code-block:: shell
+
+    cd <root of geoserver install>
+    export GEOSERVER_DATA_DIR=<root of geoserver sources>/data/citewms-1.1
+    ./bin/startup.sh
+
 #. Start the test:
 
    .. code:: shell
@@ -327,7 +409,9 @@ Run WMS 1.1 tests
 
 #. Go to the browser and open the URL: http://localhost:8888/teamengine/
 
-   - after the site open, you need to create an account to run the tests.
+   - after the site open, click on the **Sign in** button and enter the user and password.
+
+   .. note:: the Default username/password are **teamengine/teamengine**.
 
    With the following parameters:
 
@@ -359,6 +443,16 @@ Run WMS 1.1 tests
 Run WCS 1.0 tests
 -----------------
 
+#. Prepare the environment:
+
+  - Start GeoServer with the citewcs-1.0 data directory. Example:
+
+   .. code-block:: shell
+
+    cd <root of geoserver install>
+    export GEOSERVER_DATA_DIR=<root of geoserver sources>/data/citewcs-1.0
+    ./bin/startup.sh
+
 #. Start the test:
 
    .. code:: shell
@@ -367,7 +461,9 @@ Run WCS 1.0 tests
 
 #. Go to the browser and open the URL: http://localhost:8888/teamengine/
 
-   - after the site open, you need to create an account to run the tests.
+   - after the site open, click on the **Sign in** button and enter the user and password.
+
+   .. note:: the Default username/password are **teamengine/teamengine**
 
    With the following parameters:
 
@@ -408,6 +504,17 @@ Run WCS 1.0 tests
 Run WCS 1.1 tests
 -----------------
 
+#. Prepare the environment:
+
+  - Start GeoServer with the citewcs-1.1 data directory. Example:
+
+   .. code-block:: shell
+
+    cd <root of geoserver install>
+    export GEOSERVER_DATA_DIR=<root of geoserver sources>/data/citewcs-1.1
+    ./bin/startup.sh
+
+
 #. Start the test:
 
    .. code:: shell
@@ -416,7 +523,9 @@ Run WCS 1.1 tests
 
 #. Go to the browser and open the URL: http://localhost:8888/teamengine/
 
-   - after the site open, you need to create an account to run the tests.
+   - after the site open, click on the **Sign in** button and enter the user and password.
+
+   .. note:: the Default username/password are **teamengine/teamengine**
 
    With the following parameters:
 
