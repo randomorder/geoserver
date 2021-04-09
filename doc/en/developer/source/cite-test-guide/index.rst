@@ -139,7 +139,7 @@ Steps:
 
             make test suite=<suite-name>
 
-      -  And the last, but no less important run the full automate
+      -  All of the above can also be run with a single command, using:
          workflow.
 
          .. note::
