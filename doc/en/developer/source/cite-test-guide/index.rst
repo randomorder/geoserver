@@ -127,6 +127,10 @@ Running the suite tests.
 
           war_url = "https://build.geoserver.org/geoserver/master/geoserver-master-latest-war.zip"
 
+      .. note::
+
+        if you don't want to do it inside the ``Makefile`` you have the option of add the variable in the command when you build the docker images.
+
       -  To clean the local environment.
 
          .. code:: shell
@@ -138,6 +142,12 @@ Running the suite tests.
          .. code:: shell
 
             make build suite=<suite-name>
+
+      - Alternative, with the ``war_url`` variable include:
+
+         .. code::
+
+           make build suite=<suite-name> war_url=<url-or-the-geoserver-war-file-desired>
 
       -  To run the suite test.
 
