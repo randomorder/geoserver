@@ -28,7 +28,7 @@ CITE automation tests with docker
 =================================
 
 
-How to automate the CITE Tests with
+How to run the CITE Test suites with
 `docker <https://www.docker.com>`_.
 
 Requirements:
@@ -125,7 +125,7 @@ Running the suite tests.
 
         .. code:: C
 
-          war_url = "https://build.geoserver.org/geoserver/master/geoserver-master-latest-war.zip"
+          war_url = "https://build.geoserver.org/geoserver/main/geoserver-main-latest-war.zip"
 
       .. note::
 
