@@ -174,7 +174,7 @@ How to run TEAM Engine as single docker container.
 
   .. code:: SHELL
 
-     docker run -d --name standalone_teamengine -p 8080:8080 geosolutionsit/teamengine:latest
+     docker run -d --name standalone_teamengine -p 8080:8080 geoserver-docker.osgeo.org/geoserver-cite:teamengine_latest
 
 - TEAM Engine will be accessible on http://localhost:8080/teamengine/
 
@@ -182,7 +182,7 @@ How to run TEAM Engine as single docker container.
 
   .. code:: SHELL
 
-     docker run -d --name standalone_teamengine -p 9090:8080 geosolutionsit/teamengine:latest
+     docker run -d --name standalone_teamengine -p 9090:8080 geoserver-docker.osgeo.org/geoserver-cite:teamengine_latest
 
 - To stop TEAM Engine:
 
