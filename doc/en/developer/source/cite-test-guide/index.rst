@@ -52,7 +52,7 @@ Set-up the environment.
 
        .. code:: shell
 
-          git clone https://github.com/geosolutions-it/geoserver.git
+          git clone https://github.com/geoserver/geoserver.git
 
    #.  go the cite directory.
 
@@ -74,6 +74,7 @@ Set-up the environment.
           |-- wms11
           |-- wms13
           |-- wfs11
+          |-- interactive
           |-- logs
           |-- docker-compose.yml
           |-- postgres
@@ -102,8 +103,9 @@ Running the suite tests.
             clean: $(suite)         Will Clean the Environment of previous runs.
             build: $(suite)         Will Build the GeoServer Docker Image for the Environment.
             test: $(suite)      Will running the Suite test with teamengine.
+            webUI: $(suite)		 Will running the Suite test with teamengine.
 
-      - Choose which test to run by setting the Suite environment variable:
+      - Choose which test to run, this is an example:
 
         .. warning::
 
@@ -115,7 +117,7 @@ Running the suite tests.
 
         .. note::
 
-           Valid values for the Suite variable are
+           Valid values for the Suite parameter are:
              * wcs10
              * wcs11
              * wfs10
@@ -161,7 +163,6 @@ Running the suite tests.
          workflow.
 
 
-
          .. code:: shell
 
             make clean build test suite=<suite-name>
@@ -173,6 +174,51 @@ Run CITE Test Suites in local pc
 .. note::
 
    I assume that you have an standalone geoserver running.
+
+.. important::
+
+   Details to have in consideration when you are running the tests:
+
+   - The Default username/password for the teamengine webUI are **teamengine/teamengine**.
+
+   - the default url for the teamengine webUI is http://localhost:8888/teamengine/
+
+   - The output of the old suite tests, i might not appear in the Result page. So you should click on the link below **detailed old test report**, to get the full report. Ex.
+
+   .. image:: ./image/old-report.png
+
+   .. image:: ./image/full-report.png
+
+   - Add the ip of the geoserver to the docker-compose file, so later you can use that as a host for the url of the tests.
+
+      - Go to the directory ``interactive``.
+
+      .. code:: shell
+
+         cd interactive/
+
+      - open the docker-compose.override.yml file with the editor of your preference:
+
+      .. code:: shell
+
+         vim docker-compose.override.yml
+
+      - modify the line of the ``extra_hosts``, and add the ip of where the geoserver is running. Ex.
+
+      .. code:: yaml
+
+        extra_hosts:
+          - "geoserver:192.168.2.148"
+
+   - after you log in on teamengine webUI you have to create a session.
+
+   .. image:: ./image/seccion.png
+
+   - to run the tests you have to choose which test you want to, and then click on **Start a new test session**. This is an example:
+
+   .. image:: ./image/tewfs-1_0a.png
+
+
 
 
 Requirements:
@@ -256,8 +302,8 @@ Requirements:
 
    .. code-block:: shell
 
-    cd <root of geoserver repository>
-    psql -U cite cite < cite_data_postgis2.sql
+    cd <path of geoserver repository>
+    psql -U cite cite < build/cite/wfs10/citewfs-1.0/cite_data_postgis2.sql
 
    - Start GeoServer with the citewfs-1.0 data directory. Example:
 
@@ -267,12 +313,12 @@ Requirements:
 
      .. note::
 
-       <root of geoserver sources>/data/citewfs-1.0/workspaces/cgf/cgf/datastore.xml
+       <path of geoserver repository>/build/cite/wfs10/citewfs-1.0/workspaces/cgf/cgf/datastore.xml
 
    .. code-block:: shell
 
     cd <root of geoserver install>
-    export GEOSERVER_DATA_DIR=<root of geoserver sources>/data/citewfs-1.0
+    export GEOSERVER_DATA_DIR=<path of geoserver repository>/build/cite/wfs10/citewfs-1.0
     ./bin/startup.sh
 
 #. Start the test:
@@ -281,13 +327,13 @@ Requirements:
 
      make webUI
 
-#. Go to the browser and open the URL: http://localhost:8888/teamengine/
+#. Go to the browser and open the teamengine `webUI <http://localhost:8888/teamengine>`_.
 
-   - after the site open, click on the **Sign in** button and enter the user and password. 
+   - click on the **Sign in** button and enter the user and password.
 
-   With the following parameters:
+   - after created the session, and chose the test. Enter the following parameters:
 
-   #. ``Capabilities URL`` http://<ip.of.the.goserver>:8080/geoserver/wfs?request=getcapabilities&service=wfs&version=1.0.0
+   #. ``Capabilities URL`` http://geoserver:8080/geoserver/wfs?request=getcapabilities&service=wfs&version=1.0.0
 
    #. ``Enable tests with multiple namespaces`` tests included
 
@@ -331,8 +377,8 @@ Requirements:
 
    .. code-block:: shell
 
-    cd <root of geoserver repository>
-    psql -U cite cite < dataset-sf0-postgis2.sql
+    cd <path of geoserver repository>
+    psql -U cite cite < build/cite/wfs11/citewfs-1.1/dataset-sf0-postgis2.sql
 
    - Start GeoServer with the citewfs-1.1 data directory. Example:
 
@@ -342,12 +388,12 @@ Requirements:
 
      .. note::
 
-       <root of geoserver sources>/data/citewfs-1.1/workspaces/cgf/cgf/datastore.xml
+       <path of geoserver repository>/data/citewfs-1.1/workspaces/cgf/cgf/datastore.xml
 
    .. code-block:: shell
 
-    cd <root of geoserver install>
-    export GEOSERVER_DATA_DIR=<root of geoserver sources>/data/citewfs-1.1
+    cd <path of geoserver install>
+    export GEOSERVER_DATA_DIR=<path of geoserver repository>/build/cite/wfs11/citewfs-1.1
     ./bin/startup.sh
 
 
@@ -357,15 +403,13 @@ Requirements:
 
      make webUI
 
-#. Go to the browser and open the URL: http://localhost:8888/teamengine/
+#. Go to the browser and open the teamengine `webUI <http://localhost:8888/teamengine>`_.
 
-   - after the site open, click on the **Sign in** button and enter the user and password.
+   - click on the **Sign in** button and enter the user and password.
 
-   .. note:: the Default username/password are **teamengine/teamengine**.
+   - after created the session, and chose the test. Enter the following parameters:
 
-   With the following parameters:
-
-   #. ``Capabilities URL`` http://<ip.of.the.goserver>:8080/geoserver/wfs?service=wfs&request=getcapabilities&version=1.1.0
+   #. ``Capabilities URL`` http://geoserver:8080/geoserver/wfs?service=wfs&request=getcapabilities&version=1.1.0
 
    #. ``Supported Conformance Classes``:
 
@@ -395,17 +439,15 @@ Run WMS 1.1 tests
 
      make webUI
 
-#. Go to the browser and open the URL: http://localhost:8888/teamengine/
+#. Go to the browser and open the teamengine `webUI <http://localhost:8888/teamengine>`_.
 
-   - after the site open, click on the **Sign in** button and enter the user and password.
+   - click on the **Sign in** button and enter the user and password.
 
-   .. note:: the Default username/password are **teamengine/teamengine**.
-
-   With the following parameters:
+   - after created the session, and chose the test. Enter the following parameters:
 
    #. ``Capabilities URL``
 
-          http://<ip.of.the.geoserver>:8080/geoserver/wms?service=wms&request=getcapabilities&version=1.1.1
+          http://geoserver:8080/geoserver/wms?service=wms&request=getcapabilities&version=1.1.1
 
    #. ``UpdateSequence Values``:
 
@@ -447,17 +489,15 @@ Run WCS 1.0 tests
 
      make webUI
 
-#. Go to the browser and open the URL: http://localhost:8888/teamengine/
+#. Go to the browser and open the teamengine `webUI <http://localhost:8888/teamengine>`_.
 
-   - after the site open, click on the **Sign in** button and enter the user and password.
+   - click on the **Sign in** button and enter the user and password.
 
-   .. note:: the Default username/password are **teamengine/teamengine**
-
-   With the following parameters:
+   - after created the session, and chose the test. Enter the following parameters:
 
    #. ``Capabilities URL``:
 
-          http://<ip.of.the.geoserver>:8080/geoserver/wcs?service=wcs&request=getcapabilities&version=1.0.0
+          http://geoserver:8080/geoserver/wcs?service=wcs&request=getcapabilities&version=1.0.0
 
    #. ``MIME Header Setup``: "image/tiff"
 
@@ -509,17 +549,15 @@ Run WCS 1.1 tests
 
      make webUI
 
-#. Go to the browser and open the URL: http://localhost:8888/teamengine/
+#. Go to the browser and open the teamengine `webUI <http://localhost:8888/teamengine>`_.
 
-   - after the site open, click on the **Sign in** button and enter the user and password.
+   - click on the **Sign in** button and enter the user and password.
 
-   .. note:: the Default username/password are **teamengine/teamengine**
-
-   With the following parameters:
+   - after created the session, and chose the test. Enter the following parameters:
 
    #. ``Capabilities URL``:
 
-         http://<ip.of.the.geoserver>:8080/geoserver/wcs?service=wcs&request=getcapabilities&version=1.1.1
+         http://geoserver:8080/geoserver/wcs?service=wcs&request=getcapabilities&version=1.1.1
 
    Click ``Next``
 
