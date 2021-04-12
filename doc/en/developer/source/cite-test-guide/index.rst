@@ -125,7 +125,7 @@ Running the suite tests.
 
         .. code:: C
 
-          war_url = "https://build.geoserver.org/geoserver/master/geoserver-master-latest-war.zip"
+          war_url = "https://build.geoserver.org/geoserver/main/geoserver-main-latest-war.zip"
 
       .. note::
 
