@@ -10,18 +10,18 @@ A step by step guide to the GeoServer Compliance Interoperability Test Engine (C
 ~~~~~~~~~~~~~
 
 
-Check out CITE suite tools
+Check out CITE suite tests
 --------------------------
 
-.. note:: The CITE tools are available at `Open Geospatial Consortium`_.
+.. note:: The CITE suite tests are available at `Open Geospatial Consortium`_.
 .. _Open Geospatial Consortium: https://github.com/opengeospatial
 
 Requirements:
 -------------
 
-- `GeoServer <https://github.com/geosolutions-it/geoserver>`_.
+- `GeoServer instance <https://github.com/geosolutions-it/geoserver>`_.
 
-- Teamengine Web Application
+- `Teamengine Web Application <https://github.com/geosolutions-it/teamengine-docker>`_, with a set of CITE suite tests.
 
 
 CITE automation tests with docker
