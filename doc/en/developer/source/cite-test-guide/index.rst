@@ -167,29 +167,6 @@ Running the suite tests.
             make clean build test suite=<suite-name>
 
 
-How to run TEAM Engine as single docker container.
----------------------------------------------------
-
-- To run a standalone version of TEAM Engine, start it with the following command:
-
-  .. code:: SHELL
-
-     docker run -d --name standalone_teamengine -p 8080:8080 geoserver-docker.osgeo.org/geoserver-cite:teamengine_latest
-
-- TEAM Engine will be accessible on http://localhost:8080/teamengine/
-
-- If you want to change the port, for example to have it on port "9090", change the command as follows:
-
-  .. code:: SHELL
-
-     docker run -d --name standalone_teamengine -p 9090:8080 geoserver-docker.osgeo.org/geoserver-cite:teamengine_latest
-
-- To stop TEAM Engine:
-
-  .. code:: SHELL
-
-     docker stop standalone_teamengine
-
 Run CITE Test Suites in local pc
 ================================
 
