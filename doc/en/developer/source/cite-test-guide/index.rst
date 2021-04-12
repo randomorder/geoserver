@@ -23,6 +23,8 @@ Requirements:
 
 - `Teamengine Web Application <https://github.com/geosolutions-it/teamengine-docker>`_, with a set of CITE suite tests.
 
+- make
+
 
 CITE automation tests with docker
 =================================
