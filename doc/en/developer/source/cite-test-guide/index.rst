@@ -207,7 +207,6 @@ Requirements:
 
 - Teamengine Running in docker container.
 
-- `GeoServer repository <https://github.com/geoserver/geoserver.git>`_
 
 
 #. Clone the repository:
