@@ -28,7 +28,7 @@ CITE automation tests with docker
 =================================
 
 
-How to automate the CITE Tests with
+How to run the CITE Test suites with
 `docker <https://www.docker.com>`_.
 
 Requirements:
