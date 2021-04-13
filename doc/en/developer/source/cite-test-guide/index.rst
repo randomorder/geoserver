@@ -547,6 +547,50 @@ Run WCS 1.1 tests
    .. image:: ./image/tewcs-1_1a.png
 
 
+Run WMS 1.3 tests
+-----------------
+
+#. Prepare the environment:
+
+  - Start GeoServer with the citewcs-1.3 data directory. Example:
+
+   .. code-block:: shell
+
+    cd <root of geoserver install>
+    export GEOSERVER_DATA_DIR=<root of geoserver sources>/build/cite/wms13/citewms-1.3
+    ./bin/startup.sh
+
+
+#. Start the test:
+
+   .. code:: shell
+
+     make webUI
+
+#. Go to the browser and open the teamengine `webUI <http://localhost:8888/teamengine>`_.
+
+   - click on the **Sign in** button and enter the user and password.
+
+   - after creating the session, and chosing the test, enter the following parameters:
+
+   #. ``Capabilities URL``:
+
+         http://<ip-of-the-geoserver>:8080/geoserver/wms?service=wms&request=getcapabilities&version=1.3.0
+
+   #. ``UpdateSequence Values``:
+
+      * ``Automatic`` *checked*
+
+   #. ``Options``:
+
+      * Ensure ``BASIC`` is *checked*
+      * Ensure ``QUERYABLE`` is *checked*
+
+   Click ``OK``
+
+   .. image:: ./image/tewms-1_3.png
+
+
 
 .. _commandline:
 
