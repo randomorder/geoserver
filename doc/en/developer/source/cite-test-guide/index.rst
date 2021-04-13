@@ -501,7 +501,7 @@ Run WCS 1.0 tests
 
    #. ``Schemas``:
 
-      * Ensure that ``The server implements the original schemas from the WCS 1.0.0 scpecification (OGC 03-065`` is selected
+      * Ensure that ``The server implements the original schemas from the WCS 1.0.0 specification (OGC 03-065`` is selected
 
    #. Click ``OK``
 
