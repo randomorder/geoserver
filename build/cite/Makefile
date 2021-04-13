@@ -13,11 +13,11 @@ war_url = "https://build.geoserver.org/geoserver/main/geoserver-main-latest-war.
 help:
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
 
-clean: $(suite)		## Will Clean the Environment of previous runs.
+clean:		## Will Clean the Environment of previous runs.
 	@echo Cleaning up previous runs
-	docker-compose -f docker-compose.yml -f ./$(suite)/docker-compose.override.yml \
-      down --remove-orphans --rmi all -v
-	docker-compose -f docker-compose.yml -f ./$(suite)/docker-compose.override.yml rm -vfs
+	docker-compose down --remove-orphans --rmi all -v
+	docker-compose rm -vfs
+	@echo Cleanning the previous logs.
 	sudo rm -Rf logs/
 
 build: $(suite)		## Will Build the GeoServer Docker Image for the Environment.

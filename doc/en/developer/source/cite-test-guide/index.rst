@@ -54,13 +54,13 @@ Set-up the environment.
 
           git clone https://github.com/geoserver/geoserver.git
 
-   #.  go the cite directory.
+   #.  Go to cite directory.
 
        .. code:: shell
 
           cd geoserver/build/cite
 
-   #.  inside will find a structure like below with a list of directories with the name of the suites to run.
+   #.  Inside you will find a structure, like below, with a list of directories which contains the name of the suites to run.
 
        .. code:: shell
 
@@ -84,12 +84,12 @@ Set-up the environment.
 Running the suite tests.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-   There is 2 way to run the suites, one is running with `make` that will
+   There are 2 ways to run the suites. One is running with ``make`` that will
    automate all the commands, and the second one is running the test through WebUI:
 
-   1. Running the through Makefile:
+   1. Running it through ``Makefile``:
 
-      -  run ``make`` in the console, will give you the list of commands
+      -  run ``make`` in the console, it will give you the list of commands
          to run.
 
          .. code:: shell
@@ -117,7 +117,7 @@ Running the suite tests.
 
         .. note::
 
-           Valid values for the Suite parameter are:
+           Valid values for the suite parameter are:
              * wcs10
              * wcs11
              * wfs10
@@ -125,7 +125,7 @@ Running the suite tests.
              * wms11
              * wms13
 
-      - Choose which GeoServer war to test by setting the ``war_url`` environment variable inside the ``Makefile``, ex:
+      - Choose which GeoServer war file to test by setting the ``war_url`` environment variable inside the ``Makefile``, ex:
 
         .. code:: C
 
@@ -133,13 +133,13 @@ Running the suite tests.
 
       .. note::
 
-        if you don't want to do it inside the ``Makefile`` you have the option of add the variable in the command when you build the docker images.
+        if you don't want to do it inside the ``Makefile`` you have the option of adding the variable in the command when you build the docker images.
 
       -  To clean the local environment.
 
          .. code:: shell
 
-            make clean suite=<suite-name>
+            make clean
 
       -  To build the geoserver docker image locally.
 
@@ -159,8 +159,7 @@ Running the suite tests.
 
             make test suite=<suite-name>
 
-      -  And the last, but no less important run the full automate
-         workflow.
+      -  To run the full automate workflow.
 
 
          .. code:: shell
@@ -173,48 +172,29 @@ Run CITE Test Suites in local pc
 
 .. note::
 
-   I assume that you have an standalone geoserver running.
+   I assume that you have a standalone geoserver running.
 
 .. important::
 
-   Details to have in consideration when you are running the tests:
+   Details to consider when you are running the tests:
 
    - The Default username/password for the teamengine webUI are **teamengine/teamengine**.
 
    - the default url for the teamengine webUI is http://localhost:8888/teamengine/
 
-   - The output of the old suite tests, i might not appear in the Result page. So you should click on the link below **detailed old test report**, to get the full report. Ex.
+   - The output of the old suite tests might not appear in the Result page. So you should click on the link below **detailed old test report**, to get the full report. Ex.
 
    .. image:: ./image/old-report.png
 
    .. image:: ./image/full-report.png
 
-   - Add the ip of the geoserver to the docker-compose file, so later you can use that as a host for the url of the tests.
+   - Since you are running teamengine inside a container, the localhost in the url of geoserver for the tests can't be used, for that, get the ip of host where the geoserver is running. You will use it later.
 
-      - Go to the directory ``interactive``.
-
-      .. code:: shell
-
-         cd interactive/
-
-      - open the docker-compose.override.yml file with the editor of your preference:
-
-      .. code:: shell
-
-         vim docker-compose.override.yml
-
-      - modify the line of the ``extra_hosts``, and add the ip of where the geoserver is running. Ex.
-
-      .. code:: yaml
-
-        extra_hosts:
-          - "geoserver:192.168.2.148"
-
-   - after you log in on teamengine webUI you have to create a session.
+   - after you log in to teamengine webUI you have to create a session.
 
    .. image:: ./image/seccion.png
 
-   - to run the tests you have to choose which test you want to, and then click on **Start a new test session**. This is an example:
+   - to run the tests you have to choose which one you want, and then click on **Start a new test session**. This is an example:
 
    .. image:: ./image/tewfs-1_0a.png
 
@@ -268,7 +248,7 @@ Run WFS 1.0 tests
 
 .. important::
 
-   Running WFS 1.0 tests require PostgreSQL with PostGIS extension installed to be installed on the system.
+   Running WFS 1.0 tests require PostgreSQL with PostGIS extension installed in the system.
 
 Requirements:
 ~~~~~~~~~~~~~
@@ -280,7 +260,7 @@ Requirements:
 
 #. Prepare the environment:
 
-   - login in postgresql and create a user named "cite".
+   - login to postgresql and create a user named "cite".
 
    .. code:: sql
 
@@ -331,9 +311,9 @@ Requirements:
 
    - click on the **Sign in** button and enter the user and password.
 
-   - after created the session, and chose the test. Enter the following parameters:
+   - after creating the session, and chosing the test, enter the following parameters:
 
-   #. ``Capabilities URL`` http://geoserver:8080/geoserver/wfs?request=getcapabilities&service=wfs&version=1.0.0
+   #. ``Capabilities URL`` http://<ip-of-the-geoserver>:8080/geoserver/wfs?request=getcapabilities&service=wfs&version=1.0.0
 
    #. ``Enable tests with multiple namespaces`` tests included
 
@@ -344,7 +324,7 @@ Run WFS 1.1 tests
 
 .. important::
 
-   Running WFS 1.1 tests require PostgreSQL with PostGIS extension installed to be installed on the system.
+   Running WFS 1.1 tests requires PostgreSQL with PostGIS extension installed in the system.
 
 Requirements:
 ~~~~~~~~~~~~~
@@ -355,7 +335,7 @@ Requirements:
 
 #. Prepare the environment:
 
-   - login in postgresql and create a user named "cite".
+   - login to postgresql and create a user named "cite".
 
    .. code:: sql
 
@@ -388,7 +368,7 @@ Requirements:
 
      .. note::
 
-       <path of geoserver repository>/data/citewfs-1.1/workspaces/cgf/cgf/datastore.xml
+       <path of geoserver repository>/build/cite/wfs11/citewfs-1.1/workspaces/cgf/cgf/datastore.xml
 
    .. code-block:: shell
 
@@ -407,18 +387,21 @@ Requirements:
 
    - click on the **Sign in** button and enter the user and password.
 
-   - after created the session, and chose the test. Enter the following parameters:
+   - after creating the session, and chosing the test, enter the following parameters:
 
-   #. ``Capabilities URL`` http://geoserver:8080/geoserver/wfs?service=wfs&request=getcapabilities&version=1.1.0
+   #. ``Capabilities URL`` http://<ip-of-the-geoserver>:8080/geoserver/wfs?service=wfs&request=getcapabilities&version=1.1.0
 
    #. ``Supported Conformance Classes``:
 
       * Ensure ``WFS-Transaction`` is *checked*
+      * Ensure ``WFS-Locking`` is *checked*
       * Ensure ``WFS-Xlink`` is *unchecked*
+
+      .. image:: ./image/tewfs-1_1a.png
 
    #. ``GML Simple Features``: ``SF-0``
 
-   .. image:: ./image/tewfs-1_1.png
+   .. image:: ./image/tewfs-1_1b.png
 
 Run WMS 1.1 tests
 -----------------
@@ -430,7 +413,7 @@ Run WMS 1.1 tests
    .. code-block:: shell
 
     cd <root of geoserver install>
-    export GEOSERVER_DATA_DIR=<root of geoserver sources>/data/citewms-1.1
+    export GEOSERVER_DATA_DIR=<path of geoserver repository>/build/cite/wms11/citewms-1.1
     ./bin/startup.sh
 
 #. Start the test:
@@ -443,11 +426,11 @@ Run WMS 1.1 tests
 
    - click on the **Sign in** button and enter the user and password.
 
-   - after created the session, and chose the test. Enter the following parameters:
+   - after creating the session, and chosing the test, enter the following parameters:
 
    #. ``Capabilities URL``
 
-          http://geoserver:8080/geoserver/wms?service=wms&request=getcapabilities&version=1.1.1
+          http://<ip-of-the-geoserver>:8080/geoserver/wms?service=wms&request=getcapabilities&version=1.1.1
 
    #. ``UpdateSequence Values``:
 
@@ -480,7 +463,7 @@ Run WCS 1.0 tests
    .. code-block:: shell
 
     cd <root of geoserver install>
-    export GEOSERVER_DATA_DIR=<root of geoserver sources>/data/citewcs-1.0
+    export GEOSERVER_DATA_DIR=<path of geoserver repository>/build/cite/wcs10/citewcs-1.0
     ./bin/startup.sh
 
 #. Start the test:
@@ -493,11 +476,11 @@ Run WCS 1.0 tests
 
    - click on the **Sign in** button and enter the user and password.
 
-   - after created the session, and chose the test. Enter the following parameters:
+   - after creating the session, and chosing the test, enter the following parameters:
 
    #. ``Capabilities URL``:
 
-          http://geoserver:8080/geoserver/wcs?service=wcs&request=getcapabilities&version=1.0.0
+          http://<ip-of-the-geoserver>:8080/geoserver/wcs?service=wcs&request=getcapabilities&version=1.0.0
 
    #. ``MIME Header Setup``: "image/tiff"
 
@@ -539,7 +522,7 @@ Run WCS 1.1 tests
    .. code-block:: shell
 
     cd <root of geoserver install>
-    export GEOSERVER_DATA_DIR=<root of geoserver sources>/data/citewcs-1.1
+    export GEOSERVER_DATA_DIR=<root of geoserver sources>/build/cite/wcs11/citewcs-1.1
     ./bin/startup.sh
 
 
@@ -553,11 +536,11 @@ Run WCS 1.1 tests
 
    - click on the **Sign in** button and enter the user and password.
 
-   - after created the session, and chose the test. Enter the following parameters:
+   - after creating the session, and chosing the test, enter the following parameters:
 
    #. ``Capabilities URL``:
 
-         http://geoserver:8080/geoserver/wcs?service=wcs&request=getcapabilities&version=1.1.1
+         http://<ip-of-the-geoserver>:8080/geoserver/wcs?service=wcs&request=getcapabilities&version=1.1.1
 
    Click ``Next``
 
