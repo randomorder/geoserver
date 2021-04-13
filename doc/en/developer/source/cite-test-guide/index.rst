@@ -540,7 +540,7 @@ Run WCS 1.1 tests
 
    #. ``Capabilities URL``:
 
-         http://<ip-of-the-geoserver>:8080/geoserver/wcs?service=wcs&request=getcapabilities&version=1.1.1
+         http://<ip-of-the-geoserver>:8080/geoserver/wcs
 
    Click ``Next``
 
