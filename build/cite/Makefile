@@ -14,7 +14,6 @@ help:
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
 
 clean:		## Will Clean the Environment of previous runs.
-
 	@echo Cleaning up previous runs
 	docker-compose down --remove-orphans --rmi all -v
 	docker-compose rm -vfs
@@ -27,7 +26,7 @@ build: $(suite)		## Will Build the GeoServer Docker Image for the Environment.
 	build --build-arg GEOSERVER_WEBAPP_SRC=${war_url} geoserver
 
 test: $(suite)		## Will running the Suite test with teamengine.
-    	@echo Getting the GeoServer version.
+	@echo Getting the GeoServer version.
     	docker run -it ogccite/geoserver:$(suite) bash -c 'cd /usr/local/tomcat/webapps/ \
            && if [ -f geoserver.war ]; then unzip -q geoserver.war; cat META-INF/MANIFEST.MF; \
            else cat META-INF/MANIFEST.MF; fi'
