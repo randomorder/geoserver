@@ -18,7 +18,7 @@ clean:		## Will Clean the Environment of previous runs.
 	docker-compose down --remove-orphans --rmi all -v
 	docker-compose rm -vfs
 	@echo Cleanning the previous logs.
-	sudo rm -Rf logs/
+	# sudo rm -Rf logs/
 
 build: $(suite)		## Will Build the GeoServer Docker Image for the Environment.
 	@echo Build the GeoServer Docker Image
