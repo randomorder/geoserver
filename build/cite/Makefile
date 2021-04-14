@@ -31,7 +31,7 @@ test: $(suite)		## Will running the Suite test with teamengine.
         #   && if [ -f geoserver.war ]; then unzip -q geoserver.war; cat META-INF/MANIFEST.MF; \
         #   else cat META-INF/MANIFEST.MF; fi'
 	@echo running the Suite test with teamengine
-	docker-compose -f docker-compose.yml -f ./$(suite)/docker-compose.override.yml up --force-recreate --exit-code-from teamengine teamengine
+	docker-compose --verbose -f docker-compose.yml -f ./$(suite)/docker-compose.override.yml up --force-recreate --exit-code-from teamengine teamengine
 
 webUI:		## Will running the Suite test with teamengine.
 	@echo running the Suite test with teamengine webUI
