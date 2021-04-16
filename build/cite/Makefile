@@ -27,7 +27,7 @@ build: $(suite)		## Will Build the GeoServer Docker Image for the Environment.
 
 version: $(suite)   ## Will give the version of the GeoServer on the current docker.
 		@echo Getting the GeoServer version.
-		docker run -it ogccite/geoserver:$(suite) bash -c 'cd /usr/local/tomcat/webapps/ && if [ -f geoserver.war ]; then unzip -q geoserver.war; cat META-INF/MANIFEST.MF; else cat META-INF/MANIFEST.MF; fi'
+		docker run -i ogccite/geoserver:$(suite) bash -c 'cd /usr/local/tomcat/webapps/ && if [ -f geoserver.war ]; then unzip -q geoserver.war; cat META-INF/MANIFEST.MF; else cat META-INF/MANIFEST.MF; fi'
 
 test: $(suite) | version		## Will running the Suite test with teamengine.
 		@echo running the Suite test with teamengine
