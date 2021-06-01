@@ -3,12 +3,12 @@
 # fail on error
 set -e
 
-TE_LOG_DIR="$TE_BASE/users/root"
+TE_LOG_DIR="$TE_BASE/users/teamengine"
 TE_FORMS_DIR="$TE_BASE/forms"
 
 mkdir -p "$TE_FORMS_DIR"
 
-cd "/root/te_base/bin/unix/"
+cd "/home/teamengine/te_base/bin/unix/"
 
 
 # test.sh comes from https://github.com/opengeospatial/teamengine/blob/master/teamengine-console/src/main/scripts/shell/unix/test.sh
@@ -97,6 +97,11 @@ wcs11 () {
   source="$TE_SCRIPTS_DIR/wcs/1.1.1/ctl/wcs.xml"
   form="$TE_FORMS_DIR/wcs-1.1.1.xml"
   _run
+}
+
+interactive () {
+    /usr/local/tomcat/bin/startup.sh
+    while true; do sleep 100000; done
 }
 
 run_all () {

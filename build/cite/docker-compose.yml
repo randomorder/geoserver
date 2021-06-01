@@ -22,13 +22,13 @@ services:
     - gs_gwc_cache_dir:/var/geoserver/gwc_cache_dir:rw
 
   teamengine:
-    image: geoserver-docker.osgeo.org/geoserver-cite:${TEAMENGINE_TAG:-teamengine_5.3}
+    image: geoserver-docker.osgeo.org/geoserver-cite:${TEAMENGINE_TAG:-teamengine_latest}
     ports:
       - 8080
     depends_on:
       - geoserver
     volumes:
-      - ./logs:/root/te_base/users/root
+      - ./logs:/home/teamengine/te_base/users/teamengine
       - ./run-test.sh:/run-test.sh
 
 volumes:
